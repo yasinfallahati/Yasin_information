@@ -1,81 +1,54 @@
-# Yasin — AI / Backend Developer Portfolio
+# Yasin Fallahati — Portfolio
 
-A fast, responsive personal portfolio built to present backend engineering, AI experiments, and automation work with clarity.
+An editorial, dark-first portfolio for an AI and backend developer. Built with React and Vite, deployed through GitHub Pages, and synced with the repositories pinned on GitHub.
 
-The site is intentionally lightweight: no framework, no build step, and no unnecessary visual effects. Its featured-project section is automatically kept in sync with the repositories pinned on my GitHub profile.
+## Stack
 
-## Highlights
+- React 19
+- Vite 7
+- Vanilla CSS (custom design system, no UI library)
+- GitHub Actions + GitHub GraphQL API
+- GitHub Pages
 
-- Dark-first interface with a saved light-mode preference
-- Persian / RTL layout with responsive navigation
-- Accessible structure: semantic sections, keyboard-friendly controls, skip link, and reduced-motion support
-- Honest skill levels grouped by Backend, AI/ML, and Automation
-- Dynamic GitHub projects section powered by pinned repositories
-- Minimal footprint: plain HTML, CSS, and vanilla JavaScript
+## Features
 
-## Tech stack
+- Responsive Persian/RTL interface with an English technical visual language
+- Light and dark themes, persisted locally
+- Accessible links and motion-conscious interaction
+- Project cards generated from pinned repositories at `@yasinfallahati`
+- Automated build and GitHub Pages deployment
 
-| Area | Choice |
-| --- | --- |
-| Markup | HTML5 |
-| Styling | Modern CSS, custom properties, responsive grid |
-| Interaction | Vanilla JavaScript |
-| Font | Vazirmatn + Inter |
-| Project sync | GitHub Actions + GitHub GraphQL API |
-
-## Project structure
-
-```text
-.
-├── assets/                         # Resume and local visual assets
-├── scripts/
-│   └── sync-pinned-projects.mjs    # Fetches pinned repositories from GitHub
-├── .github/workflows/
-│   └── sync-pinned-projects.yml    # Scheduled GitHub Action
-├── index.html
-├── styles.css
-├── script.js
-└── pinned-projects.json            # Generated project data used by the site
-```
-
-## Run locally
-
-Because this is a static site, any local server will work. For example:
+## Local development
 
 ```bash
-npx serve .
+npm install
+npm run dev
 ```
 
-Then open the local address shown in your terminal. Avoid opening `index.html` directly if you want to test project loading, because browsers restrict `fetch()` from local files.
+On Windows PowerShell, use `npm.cmd` if PowerShell blocks `npm.ps1`:
 
-## Automatic pinned-project sync
+```powershell
+npm.cmd install
+npm.cmd run dev
+```
 
-The Projects section is generated from repositories pinned on the GitHub profile [`@yasinfallahati`](https://github.com/yasinfallahati).
+## GitHub project sync
 
-The workflow at `.github/workflows/sync-pinned-projects.yml` runs every six hours. It uses GitHub's built-in `GITHUB_TOKEN` to read the pinned repositories through the GraphQL API, updates `pinned-projects.json`, and commits the change back to the repository.
+`.github/workflows/sync-pinned-projects.yml` fetches up to six pinned repositories every six hours, writes `public/pinned-projects.json`, builds the site, and deploys it. You can trigger it immediately from **Actions → Sync pinned GitHub projects → Run workflow**.
 
-To refresh the list immediately:
-
-1. Pin or unpin a repository on your GitHub profile.
-2. Open this repository on GitHub.
-3. Go to **Actions** → **Sync pinned GitHub projects**.
-4. Select **Run workflow**.
-
-> Ensure GitHub Actions has **Read and write permissions** for this repository: **Settings** → **Actions** → **General** → **Workflow permissions**.
-
-No personal access token is exposed in the browser or committed to the repository.
-
-## Customization
-
-- Update personal copy, contact links, and hero content in `index.html`.
-- Replace `assets/resume.pdf` with your current CV.
-- Update colors in the `:root` variables inside `styles.css`.
-- Add a description and homepage URL to each GitHub repository; they appear in the project cards automatically.
+For the workflow to commit the refreshed JSON, enable **Settings → Actions → General → Workflow permissions → Read and write permissions**.
 
 ## Deployment
 
-This project can be deployed to GitHub Pages, Vercel, Netlify, or any static hosting provider. For GitHub Pages, publish from the branch where the workflow commits `pinned-projects.json` so the refreshed projects are included in the deployed site.
+The workflow at `.github/workflows/deploy.yml` deploys every push to `main`. In GitHub, set **Settings → Pages → Source** to **GitHub Actions**.
 
-## License
+The Vite base path is configured for this repository: `https://yasinfallahati.github.io/profileyasin/`.
 
-This portfolio is personal work. Feel free to use it as inspiration, but please do not publish it as your own unchanged portfolio.
+## Structure
+
+```text
+src/              React components and styles
+public/           Public project data
+scripts/          GitHub GraphQL sync script
+.github/workflows CI, sync, and deployment workflows
+```

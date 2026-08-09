@@ -10,4 +10,4 @@ const result = await response.json();
 if (!response.ok || result.errors || !result.data?.user) throw new Error(`GitHub API error: ${result.errors?.map((error) => error.message).join(', ') || response.statusText}`);
 
 const projects = result.data.user.pinnedItems.nodes.map((repo) => ({ name: repo.name, description: repo.description || 'توضیح این پروژه در گیت‌هاب اضافه می‌شود.', githubUrl: repo.url, demoUrl: repo.homepageUrl || null, language: repo.primaryLanguage?.name || null, topics: repo.languages.nodes.map((language) => language.name) }));
-await writeFile('pinned-projects.json', `${JSON.stringify({ updatedAt: new Date().toISOString(), projects }, null, 2)}\n`);
+await writeFile('public/pinned-projects.json', `${JSON.stringify({ updatedAt: new Date().toISOString(), projects }, null, 2)}\n`);
