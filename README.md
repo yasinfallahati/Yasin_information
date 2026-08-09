@@ -1,4 +1,4 @@
-# Yasin Fallahati — Portfolio
+# Yasin Fallahati — yasin_information
 
 An editorial, dark-first portfolio for an AI and backend developer. Built with React and Vite, deployed through GitHub Pages, and synced with the repositories pinned on GitHub.
 
