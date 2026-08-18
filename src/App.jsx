@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-import resumeUrl from '../assets/resume.pdf';
 import Sidebar from './components/Sidebar';
 
 const base = import.meta.env.BASE_URL;
@@ -9,28 +8,39 @@ const profile = {
   github: 'https://github.com/yasinfallahati'
 };
 
+/* ========================
+   COPY — All 3 Languages
+   ======================== */
 const copy = {
   fa: {
     dir: 'rtl',
-    role: 'توسعه‌دهندهٔ هوش مصنوعی و بک‌اند',
+    role: 'مهندس هوش مصنوعی و بک‌اند',
     name: 'یاسین\nفلاحتی',
-    lead: 'سیستم‌های هوشمند، ساده و قابل‌اعتماد می‌سازم؛ از ایدهٔ اولیه تا محصولی که واقعاً به کار می‌آید.',
-    explore: 'دیدن پروژه‌ها',
-    contact: 'ارتباط با من',
+    lead: 'من سیستم‌هایی می‌سازم که فکر می‌کنند، یاد می‌گیرند و کار می‌کنند. از معماری داده تا ربات‌های هوشمند، هر خط کدی که می‌نویسم یک هدف دارد: ساده‌سازی زندگی.',
+    explore: 'پروژه‌ها رو ببین',
+    contact: 'بیایید حرف بزنیم',
     aboutLabel: 'دربارهٔ من',
-    about: 'مهندسی خوب،\nبی‌صدا کار می‌کند.',
-    aboutText: 'در مرز مهندسی بک‌اند، اتوماسیون و هوش مصنوعی کار می‌کنم؛ با تمرکز بر معماری روشن، کد قابل‌نگهداری و تجربه‌ای که برای آدم‌ها ساخته شده است.',
-    skillsLabel: 'مهارت‌ها',
-    skills: 'فناوری‌هایی که\nبا آن‌ها کار می‌کنم.',
-    projectsLabel: 'پروژه‌ها',
-    projects: 'پروژه‌های منتخب',
-    projectText: 'پروژه‌ها و فناوری‌هایشان مستقیم از پروفایل GitHub به‌روز می‌شوند.',
+    about: 'کد می‌نویسم.\nسیستم می‌سازم.\nمشکل حل می‌کنم.',
+    aboutText: 'من یاسین فلاحتی هستم — مهندس نرم‌افزار با تمرکز بر هوش مصنوعی، بک‌اند و اتوماسیون. کار من تبدیل ایده‌های پیچیده به راه‌حل‌های ساده و کارآمد است. باور دارم بهترین سیستم‌ها، آن‌هایی هستند که کاربر حتی وجودشان را حس نمی‌کند.',
+    skillTitle: 'roscope',
+    skillsLabel: 'stack فنی',
+    skills: 'ابزارهایی که\nباهاشون خلاقیت می‌کنم.',
+    projectsLabel: 'Selected Work',
+    projects: 'پروژه‌هایی که\nباهاشون افتخار می‌کنم.',
+    projectText: 'هر پروژه یک داستان دارد — از چالش تا راه‌حل. این‌ها نمونه‌هایی از کارهای من هستند.',
     terminal: 'ترمینال',
-    terminalHint: 'یک فرمان انتخاب کنید',
-    all: 'همهٔ ریپوزیتوری‌ها',
-    available: 'آماده برای فرصت‌های جدید',
-    contactLabel: 'تماس',
-    contactTitle: 'بیایید چیزی\nمفید بسازیم.',
+    terminalHint: 'یه فرمان بزن...',
+    all: 'همهٔ پروژه‌ها',
+    available: 'آماده همکاری',
+    contactLabel: 'ارتباط',
+    contactTitle: 'یه پروژهٔ\nعالی در راهه.',
+    subtitle: 'مهندس نرم‌افزار',
+    value1Title: 'معماری',
+    value1: 'سیستم‌هایی که امروز ساخته می‌شوند، فردا هم جواب بدهند.',
+    value2Title: 'دقت',
+    value2: 'جزئیات کوچک، تفاوت‌های بزرگ می‌سازند.',
+    value3Title: 'یادگیری',
+    value3: 'هر روز یک چیز جدید یاد می‌گیرم که فردا به کار بیاید.',
     github: 'گیت‌هاب',
     telegram: 'تلگرام'
   },
@@ -38,23 +48,31 @@ const copy = {
     dir: 'ltr',
     role: 'AI & Backend Engineer',
     name: 'Yasin\nFallahati',
-    lead: 'I build intelligent systems that are simple, reliable, and genuinely useful — from first idea to a working product.',
-    explore: 'Explore my work',
-    contact: "Let's connect",
+    lead: "I build systems that think, learn, and execute. From data architecture to intelligent automation — every line of code I write has one purpose: making complex things feel simple.",
+    explore: 'See my work',
+    contact: "Let's talk",
     aboutLabel: 'About me',
-    about: 'Good engineering\nworks quietly.',
-    aboutText: 'I work where backend engineering, automation, and applied AI meet — with a focus on clear architecture, maintainable code, and human-friendly products.',
-    skillsLabel: 'Skills',
-    skills: 'Technologies I\nwork with.',
-    projectsLabel: 'Projects',
-    projects: 'Featured projects',
-    projectText: 'Projects and their technologies update directly from my GitHub profile.',
+    about: 'I write code.\nI build systems.\nI solve problems.',
+    aboutText: "I'm Yasin Fallahati — a software engineer focused on AI, backend, and automation. My work turns complex ideas into elegant, efficient solutions. I believe the best systems are the ones users never notice — they just work.",
+    skillTitle: 'scope',
+    skillsLabel: 'Tech Stack',
+    skills: 'Tools I use to\nbring ideas to life.',
+    projectsLabel: 'Selected Work',
+    projects: "Projects I'm\nproud of.",
+    projectText: 'Every project tells a story — from challenge to solution. Here are some of my recent works.',
     terminal: 'Terminal',
-    terminalHint: 'Pick a command',
+    terminalHint: 'Type a command...',
     all: 'All repositories',
-    available: 'Available for new opportunities',
+    available: 'Open to work',
     contactLabel: 'Contact',
-    contactTitle: "Let's build something\nuseful together.",
+    contactTitle: "Something great\nis coming.",
+    subtitle: 'Software Engineer',
+    value1Title: 'Architecture',
+    value1: 'Systems built today should still work tomorrow.',
+    value2Title: 'Precision',
+    value2: 'Small details create big differences.',
+    value3Title: 'Growth',
+    value3: 'Every day I learn something new that adds value tomorrow.',
     github: 'GitHub',
     telegram: 'Telegram'
   },
@@ -62,23 +80,31 @@ const copy = {
     dir: 'ltr',
     role: 'AI- & Backend-Entwickler',
     name: 'Yasin\nFallahati',
-    lead: 'Ich entwickle intelligente Systeme, die einfach, zuverlässig und wirklich nützlich sind.',
+    lead: 'Ich entwickle Systeme, die denken, lernen und arbeiten. Von Datenarchitektur bis intelligente Automatisierung — jede Zeile Code hat ein Ziel: Komplexes einfach machen.',
     explore: 'Projekte ansehen',
-    contact: 'Kontakt',
+    contact: 'Kontakt aufnehmen',
     aboutLabel: 'Über mich',
-    about: 'Gutes Engineering\narbeitet leise.',
-    aboutText: 'Ich arbeite an der Schnittstelle von Backend-Engineering, Automatisierung und angewandter KI.',
-    skillsLabel: 'Skills',
-    skills: 'Technologien, mit\ndenen ich arbeite.',
-    projectsLabel: 'Projekte',
-    projects: 'Ausgewählte Projekte',
-    projectText: 'Projekte werden direkt über mein GitHub-Profil aktualisiert.',
+    about: 'Ich schreibe Code.\nIch baue Systeme.\nIch löse Probleme.',
+    aboutText: 'Ich bin Yasin Fallahati — Softwareentwickler mit Fokus auf KI, Backend und Automatisierung. Meine Arbeit verwandelt komplexe Ideen in elegante, effiziente Lösungen.',
+    skillTitle: 'Umfang',
+    skillsLabel: 'Tech-Stack',
+    skills: 'Werkzeuge, mit\ndenen ich Ideen\numsetze.',
+    projectsLabel: 'Ausgewählte Arbeit',
+    projects: 'Projekte, auf\ndie ich stolz bin.',
+    projectText: 'Jedes Projekt erzählt eine Geschichte — von der Herausforderung zur Lösung.',
     terminal: 'Terminal',
-    terminalHint: 'Befehl auswählen',
+    terminalHint: 'Befehl eingeben...',
     all: 'Alle Repositories',
     available: 'Offen für neue Möglichkeiten',
     contactLabel: 'Kontakt',
-    contactTitle: 'Lassen Sie uns etwas\nNützliches bauen.',
+    contactTitle: 'Etwas Großartiges\nkommt.',
+    subtitle: 'Softwareentwickler',
+    value1Title: 'Architektur',
+    value1: 'Heute gebaute Systeme müssen auch morgen funktionieren.',
+    value2Title: 'Präzision',
+    value2: 'Kleine Details machen große Unterschiede.',
+    value3Title: 'Entwicklung',
+    value3: 'Jeden Tag lerne ich etwas Neues, das morgen nützlich ist.',
     github: 'GitHub',
     telegram: 'Telegram'
   }
@@ -173,6 +199,12 @@ function Icon({ name, size = 22 }) {
     ),
     ai: (
       <path d="M12 3a3 3 0 0 1 5.1 2.14A3 3 0 0 1 19.86 9 3 3 0 0 1 19 14.1a3 3 0 0 1-5.14 2.76A3 3 0 0 1 9 17a3 3 0 0 1-2.86-4.1A3 3 0 0 1 6.14 9 3 3 0 0 1 9 5.14 3 3 0 0 1 12 3Zm0 5.2a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6Z" />
+    ),
+    email: (
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Zm16 2-8 5-8-5v12h16V6Z" />
+    ),
+    arrow: (
+      <path d="M5 12h14M12 5l7 7-7 7" />
     )
   };
   return (
@@ -229,11 +261,12 @@ function Terminal({ t }) {
   const inputRef = useRef(null);
 
   const commands = {
-    help: 'about  ·  skills  ·  projects  ·  contact  ·  clear',
-    about: 'AI and backend developer based in Iran.',
-    skills: 'Python, FastAPI, AI, automation.',
-    projects: 'Check the projects section below.',
+    help: 'about  ·  skills  ·  projects  ·  contact  ·  whoami  ·  clear',
+    about: 'AI & backend engineer. I build intelligent systems that solve real problems.',
+    skills: 'Python, FastAPI, AI, n8n, Telegram Bots, Web Scraping, Microservices.',
+    projects: 'Check the projects section below ↑',
     contact: profile.email,
+    whoami: 'Yasin Fallahati — Engineer, Builder, Problem Solver.',
     clear: ''
   };
 
@@ -247,7 +280,7 @@ function Terminal({ t }) {
       setLine(newLine);
       setHistory((prev) => [...prev, { cmd: value, output: newLine }]);
     } else {
-      const msg = 'Command not found. Try: help';
+      const msg = 'bash: command not found. Try: help';
       setLine(msg);
       setHistory((prev) => [...prev, { cmd: value, output: msg }]);
     }
@@ -256,75 +289,175 @@ function Terminal({ t }) {
   return (
     <div className="terminal-card" aria-label={t.terminal}>
       <div className="terminal-head">
-        <span>
-          <i />
-          <i />
-          <i />
-        </span>
+        <span><i /><i /><i /></span>
         {t.terminal}
       </div>
-      <p>Welcome to Yasin&apos;s terminal.</p>
-      <p className="terminal-muted">
-        Type <b>help</b> for available commands.
-      </p>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const val = e.currentTarget.command.value;
-          if (val.trim()) run(val);
-          e.currentTarget.reset();
-        }}
-      >
-        <label>yasin@portfolio:~$</label>
-        <input
-          ref={inputRef}
-          name="command"
-          placeholder={t.terminalHint}
-          autoComplete="off"
-          spellCheck={false}
-        />
-      </form>
-      {history.map((entry, i) => (
-        <div key={i} className="terminal-result">
-          <span style={{ color: 'var(--blue)' }}>{entry.cmd}</span>
-          {entry.output && <p>{entry.output}</p>}
+      <div className="terminal-body">
+        <p className="terminal-welcome">
+          <span className="terminal-green">Welcome to</span> Yasin&apos;s Portfolio Terminal <span className="terminal-version">v2.0</span>
+        </p>
+        <p className="terminal-muted">
+          Type <b>help</b> for available commands.
+        </p>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const val = e.currentTarget.command.value;
+            if (val.trim()) run(val);
+            e.currentTarget.reset();
+          }}
+        >
+          <label>
+            <span className="terminal-user">yasin</span>
+            <span className="terminal-at">@</span>
+            <span className="terminal-host">portfolio</span>
+            <span className="terminal-colon">:~$</span>
+          </label>
+          <input
+            ref={inputRef}
+            name="command"
+            placeholder={t.terminalHint}
+            autoComplete="off"
+            spellCheck={false}
+          />
+        </form>
+        <div className="terminal-history">
+          {history.map((entry, i) => (
+            <div key={i} className="terminal-entry">
+              <p className="terminal-cmd">
+                <span className="terminal-prompt">yasin@portfolio:~$</span> {entry.cmd}
+              </p>
+              {entry.output && <p className="terminal-output">{entry.output}</p>}
+            </div>
+          ))}
         </div>
-      ))}
-      {line && !history.length && <p className="terminal-result">{line}</p>}
+      </div>
     </div>
   );
 }
 
 /* ========================
+   FLOATING PARTICLES
+   ======================== */
+function FloatingParticles() {
+  return (
+    <div className="particles-container" aria-hidden="true">
+      {Array.from({ length: 20 }).map((_, i) => (
+        <div
+          key={i}
+          className="particle"
+          style={{
+            '--delay': `${Math.random() * 5}s`,
+            '--duration': `${15 + Math.random() * 20}s`,
+            '--x': `${Math.random() * 100}%`,
+            '--y': `${Math.random() * 100}%`,
+            '--size': `${2 + Math.random() * 4}px`
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ========================
+   TEXT REVEAL COMPONENT
+   ======================== */
+function TextReveal({ text, className = '', delay = 0 }) {
+  return (
+    <span className={`text-reveal ${className}`} style={{ animationDelay: `${delay}s` }}>
+      {text.split('').map((char, i) => (
+        <span
+          key={i}
+          className="text-reveal-char"
+          style={{ animationDelay: `${delay + i * 0.03}s` }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/* ========================
+   COUNTER ANIMATION
+   ======================== */
+function AnimatedCounter({ value, suffix = '' }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    let start = 0;
+    const end = parseInt(value);
+    const duration = 2000;
+    const increment = end / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [isVisible, value]);
+
+  return <span ref={ref} className="counter">{count}{suffix}</span>;
+}
+
+/* ========================
    PROJECT CARD
    ======================== */
-function Project({ project }) {
+function Project({ project, index }) {
   const tags = [...new Set([project.language, ...(project.topics || [])])]
     .filter(Boolean)
     .slice(0, 4);
 
   return (
-    <article className="project-card">
+    <article
+      className="project-card"
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
       <div className="project-art">
-        <span>{'</>'}</span>
+        <div className="project-art-bg" />
+        <span className="project-icon">{'</>'}</span>
         <b>{project.name}</b>
       </div>
-      <h3>{project.name}</h3>
-      <p>{project.description || 'A project built with care and curiosity.'}</p>
-      <div className="tags">
-        {tags.map((tag) => (
-          <span key={tag}>{tag}</span>
-        ))}
+      <div className="project-content">
+        <h3>{project.name}</h3>
+        <p>{project.description || 'A project built with care and curiosity.'}</p>
+        <div className="tags">
+          {tags.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </div>
       </div>
-      <a href={project.githubUrl} target="_blank" rel="noreferrer">
-        <Icon name="github" size={17} /> GitHub <b>↗</b>
+      <a href={project.githubUrl} target="_blank" rel="noreferrer" className="project-link">
+        <Icon name="github" size={16} />
+        <span>View on GitHub</span>
+        <Icon name="arrow" size={14} />
       </a>
     </article>
   );
 }
 
 /* ========================
-   SCROLL ANIMATION HOOK
+   SCROLL ANIMATIONS
    ======================== */
 function useScrollAnimation() {
   useEffect(() => {
@@ -336,13 +469,32 @@ function useScrollAnimation() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
     );
 
-    const elements = document.querySelectorAll('.animate-in');
+    const elements = document.querySelectorAll('.animate-in, .stagger-in');
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
+  }, []);
+}
+
+/* ========================
+   PARALLAX HOOK
+   ======================== */
+function useParallax() {
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        const rate = scrolled * 0.3;
+        hero.style.setProperty('--parallax-y', `${rate}px`);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 }
 
@@ -357,10 +509,17 @@ export default function App() {
     () => localStorage.getItem('portfolio-theme') || 'dark'
   );
   const [projects, setProjects] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const t = copy[lang];
 
   useScrollAnimation();
+  useParallax();
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -388,14 +547,9 @@ export default function App() {
     { id: 'contact', icon: '✉', label: 'Contact' }
   ];
 
-  const valueProps = [
-    ['◇', 'Architecture', 'Clear systems, designed to last.'],
-    ['↯', 'Reliability', 'Details that make products dependable.'],
-    ['✦', 'Curiosity', 'Always learning the next useful thing.']
-  ];
-
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${loaded ? 'loaded' : ''}`}>
+      <FloatingParticles />
       <Sidebar
         items={nav}
         lang={lang}
@@ -408,44 +562,83 @@ export default function App() {
         {/* ===== HERO ===== */}
         <section className="hero" id="home">
           <div className="hero-copy">
-            <span className="status">
-              <i />
-              {t.available}
-            </span>
-            <p className="eyebrow">{t.role}</p>
-            <h1>
-              {t.name.split('\n').map((part) => (
-                <span key={part}>{part}</span>
+            <div className="hero-status">
+              <span className="status">
+                <i />
+                {t.available}
+              </span>
+            </div>
+            <p className="eyebrow hero-role">{t.role}</p>
+            <h1 className="hero-name">
+              {t.name.split('\n').map((part, i) => (
+                <span key={part} className={`hero-name-line hero-name-line-${i}`}>
+                  <TextReveal text={part} delay={0.3 + i * 0.2} />
+                </span>
               ))}
             </h1>
-            <p className="lead">{t.lead}</p>
+            <p className="lead hero-lead">{t.lead}</p>
             <div className="actions">
-              <a className="button primary" href="#projects">
-                {t.explore} <b>→</b>
+              <a className="button primary glow-button" href="#projects">
+                <span>{t.explore}</span>
+                <Icon name="arrow" size={18} />
               </a>
-              <a className="button" href={`mailto:${profile.email}`}>
-                {t.contact} <b>↗</b>
+              <a className="button glass-button" href={`mailto:${profile.email}`}>
+                <Icon name="email" size={18} />
+                <span>{t.contact}</span>
               </a>
             </div>
+            <div className="hero-stats">
+              <div className="stat-item">
+                <AnimatedCounter value="6" suffix="+" />
+                <span>Projects</span>
+              </div>
+              <div className="stat-divider" />
+              <div className="stat-item">
+                <AnimatedCounter value="5" suffix="+" />
+                <span>Skills</span>
+              </div>
+              <div className="stat-divider" />
+              <div className="stat-item">
+                <AnimatedCounter value="100" suffix="%" />
+                <span>Passion</span>
+              </div>
+            </div>
           </div>
-          <Terminal t={t} />
+          <div className="hero-terminal">
+            <Terminal t={t} />
+          </div>
         </section>
 
         {/* ===== ABOUT ===== */}
         <section className="section about animate-in" id="about">
-          <p className="eyebrow">{t.aboutLabel}</p>
-          <h2>
-            {t.about.split('\n').map((part) => (
-              <span key={part}>{part}</span>
-            ))}
-          </h2>
+          <div className="section-header">
+            <p className="eyebrow">{t.aboutLabel}</p>
+            <h2 className="section-title">
+              {t.about.split('\n').map((part, i) => (
+                <span key={part} className="title-line" style={{ animationDelay: `${i * 0.15}s` }}>
+                  {part}
+                </span>
+              ))}
+            </h2>
+          </div>
           <p className="section-intro">{t.aboutText}</p>
           <div className="value-grid">
-            {valueProps.map(([icon, title, text]) => (
-              <article key={title}>
-                <span>{icon}</span>
+            {[
+              ['◇', t.value1Title, t.value1],
+              ['↯', t.value2Title, t.value2],
+              ['✦', t.value3Title, t.value3]
+            ].map(([icon, title, text], i) => (
+              <article
+                key={title}
+                className="value-card stagger-in"
+                style={{ animationDelay: `${i * 0.15}s` }}
+              >
+                <div className="value-icon">
+                  <span>{icon}</span>
+                </div>
                 <h3>{title}</h3>
                 <p>{text}</p>
+                <div className="value-card-glow" />
               </article>
             ))}
           </div>
@@ -453,25 +646,36 @@ export default function App() {
 
         {/* ===== SKILLS ===== */}
         <section className="section skills-section animate-in" id="skills">
-          <p className="eyebrow">{t.skillsLabel}</p>
-          <h2>
-            {t.skills.split('\n').map((part) => (
-              <span key={part}>{part}</span>
-            ))}
-          </h2>
+          <div className="section-header">
+            <p className="eyebrow">{t.skillsLabel}</p>
+            <h2 className="section-title">
+              {t.skills.split('\n').map((part, i) => (
+                <span key={part} className="title-line" style={{ animationDelay: `${i * 0.15}s` }}>
+                  {part}
+                </span>
+              ))}
+            </h2>
+          </div>
           <div className="skill-groups">
-            {skillGroups.map((group) => (
-              <article className="skill-group" key={group.title}>
+            {skillGroups.map((group, i) => (
+              <article
+                className="skill-group stagger-in"
+                key={group.title}
+                style={{ animationDelay: `${i * 0.1}s` }}
+              >
                 <header>
-                  <SkillIcon name={group.icon} />
+                  <div className="skill-icon-wrapper">
+                    <SkillIcon name={group.icon} />
+                  </div>
                   <h3>{group.title}</h3>
                   <small>{group.items.length}</small>
                 </header>
-                <div>
-                  {group.items.map(([name, icon]) => (
+                <div className="skill-items">
+                  {group.items.map(([name, icon], j) => (
                     <span
                       className="skill-pill"
                       key={`${group.title}-${name}`}
+                      style={{ animationDelay: `${j * 0.05}s` }}
                     >
                       <SkillIcon name={icon} />
                       {name}
@@ -485,17 +689,20 @@ export default function App() {
 
         {/* ===== PROJECTS ===== */}
         <section className="section projects animate-in" id="projects">
-          <p className="eyebrow">{t.projectsLabel}</p>
-          <h2>{t.projects}</h2>
+          <div className="section-header">
+            <p className="eyebrow">{t.projectsLabel}</p>
+            <h2 className="section-title">{t.projects}</h2>
+          </div>
           <p className="section-intro">{t.projectText}</p>
           <div className="project-grid">
             {projects.length ? (
-              projects.map((project) => (
-                <Project key={project.githubUrl} project={project} />
+              projects.map((project, i) => (
+                <Project key={project.githubUrl} project={project} index={i} />
               ))
             ) : (
               <article className="project-empty">
-                Pinned projects will appear here after GitHub sync.
+                <div className="empty-icon">📋</div>
+                <p>Pinned projects will appear here after GitHub sync.</p>
               </article>
             )}
           </div>
@@ -505,37 +712,47 @@ export default function App() {
             target="_blank"
             rel="noreferrer"
           >
-            {t.all} ↗
+            <Icon name="github" size={18} />
+            <span>{t.all}</span>
+            <Icon name="arrow" size={16} />
           </a>
         </section>
 
         {/* ===== CONTACT ===== */}
         <section className="contact animate-in" id="contact">
-          <p className="eyebrow">{t.contactLabel}</p>
-          <h2>
-            {t.contactTitle.split('\n').map((part, index) =>
-              index ? (
-                <em key={part}>{part}</em>
-              ) : (
-                <span key={part}>
-                  {part}
-                  <br />
-                </span>
-              )
-            )}
-          </h2>
-          <a href={`mailto:${profile.email}`}>
-            {profile.email}
-            <b>↗</b>
-          </a>
-          <p className="social-links">
-            <a href={profile.github} target="_blank" rel="noreferrer">
-              <Icon name="github" /> {t.github}
+          <div className="contact-inner">
+            <p className="eyebrow">{t.contactLabel}</p>
+            <h2 className="contact-title">
+              {t.contactTitle.split('\n').map((part, index) =>
+                index ? (
+                  <em key={part}>{part}</em>
+                ) : (
+                  <span key={part}>
+                    {part}
+                    <br />
+                  </span>
+                )
+              )}
+            </h2>
+            <a href={`mailto:${profile.email}`} className="contact-email">
+              <Icon name="email" size={20} />
+              <span>{profile.email}</span>
+              <Icon name="arrow" size={16} />
             </a>
-            <a href={profile.telegram} target="_blank" rel="noreferrer">
-              <Icon name="telegram" /> {t.telegram}
-            </a>
-          </p>
+            <div className="social-links">
+              <a href={profile.github} target="_blank" rel="noreferrer" className="social-link">
+                <Icon name="github" size={20} />
+                <span>{t.github}</span>
+              </a>
+              <a href={profile.telegram} target="_blank" rel="noreferrer" className="social-link">
+                <Icon name="telegram" size={20} />
+                <span>{t.telegram}</span>
+              </a>
+            </div>
+          </div>
+          <div className="contact-bg-text" aria-hidden="true">
+            {t.contactTitle.split('\n')[0]}
+          </div>
         </section>
       </main>
     </div>
