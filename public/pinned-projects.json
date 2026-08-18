@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-09T15:58:45.991Z",
+  "updatedAt": "2026-08-18T13:06:07.647Z",
   "projects": [
     {
       "name": "chat-bot",
@@ -44,14 +44,6 @@
       ]
     },
     {
-      "name": "ai",
-      "description": "توضیح این پروژه در گیت‌هاب اضافه می‌شود.",
-      "githubUrl": "https://github.com/yasinfallahati/ai",
-      "demoUrl": null,
-      "language": null,
-      "topics": []
-    },
-    {
       "name": "ClickHunt",
       "description": "One click. One ghost. One second to remember it.",
       "githubUrl": "https://github.com/yasinfallahati/ClickHunt",
@@ -59,6 +51,18 @@
       "language": "Python",
       "topics": [
         "Python"
+      ]
+    },
+    {
+      "name": "Yasin_information",
+      "description": "توضیح این پروژه در گیت‌هاب اضافه می‌شود.",
+      "githubUrl": "https://github.com/yasinfallahati/Yasin_information",
+      "demoUrl": "https://yasinfallahati.github.io/Yasin_information/",
+      "language": "CSS",
+      "topics": [
+        "CSS",
+        "JavaScript",
+        "HTML"
       ]
     }
   ]
