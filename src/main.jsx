@@ -5,5 +5,10 @@ import './contact.css';
 import App from './App';
 import { mountBackground } from './background';
 
-createRoot(document.getElementById('root')).render(<StrictMode><App /></StrictMode>);
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+
 mountBackground();
