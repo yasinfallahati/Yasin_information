@@ -1,130 +1,1115 @@
-# Yasin Fallahati — AI & Backend Portfolio
+# جزوه جامع مدیریت محصول مقدماتی
 
-<p align="center">
-  <strong>Multilingual portfolio for AI, backend, automation, and web development.</strong><br />
-  پورتفولیوی چندزبانهٔ یاسین فلاحتی برای هوش مصنوعی، بک‌اند، اتوماسیون و وب<br />
-  Mehrsprachiges Portfolio für KI, Backend, Automatisierung und Webentwicklung
-</p>
-
-<p align="center">
-  <a href="https://yasinfallahati.github.io/profileyasin/">Live site</a> ·
-  <a href="docs/README.md">Documentation</a> ·
-  <a href="#local-development">Local development</a> ·
-  <a href="#deployment">Deployment</a>
-</p>
+### از ایده تا ساخت و رشد یک محصول
 
 ---
 
-## Overview / معرفی / Überblick
+## فهرست مطالب
 
-| | |
-|---|---|
-| **Owner** | Yasin Fallahati / یاسین فلاحتی |
-| **Role** | AI, backend, automation & web developer |
-| **Languages** | فارسی (RTL), English, Deutsch |
-| **Stack** | React 19, Vite, vanilla CSS |
-| **Hosting** | GitHub Pages + GitHub Actions |
-| **Project data** | GitHub pinned repositories |
+1. مدیریت محصول چیست؟
+2. مدیر محصول چه کسی است؟
+3. تفاوت Product Manager با Project Manager
+4. چرخه عمر محصول
+5. ایده محصول و Problem Statement
+6. شناخت کاربر
+7. پرسونا
+8. تحقیق بازار
+9. تحلیل رقبا
+10. ارزش پیشنهادی یا Value Proposition
+11. Product-Market Fit
+12. MVP چیست؟
+13. ویژگی‌های محصول و اولویت‌بندی
+14. Roadmap محصول
+15. User Story
+16. معیارهای موفقیت و KPI
+17. Funnel و قیف محصول
+18. Agile و Scrum
+19. همکاری مدیر محصول با تیم فنی
+20. مدیریت Backlog
+21. تست و اعتبارسنجی محصول
+22. Feedback کاربران
+23. تحلیل داده
+24. مدیریت ریسک
+25. اشتباهات رایج مدیران محصول
+26. ابزارهای مدیریت محصول
+27. استفاده از هوش مصنوعی در مدیریت محصول
+28. مثال عملی از ساخت یک محصول
+29. واژه‌نامه مهم مدیریت محصول
+30. جمع‌بندی
 
-## Highlights / ویژگی‌ها / Highlights
+---
 
-- 🌐 Persian, English, and German interface with persistent language selection.
-- 🌓 Complete dark and light themes.
-- 📱 Responsive floating navigation: sidebar, top dock, then mobile bottom dock.
-- 🧩 Categorized skill inventory with program and concept icons.
-- 💻 Interactive presentation terminal — safe, client-side, and not connected to a real shell.
-- 📌 Project cards generated from pinned GitHub repositories.
-- ♿ Keyboard-friendly controls and clear external links.
+# فصل اول: مدیریت محصول چیست؟
 
-## Skills / مهارت‌ها / Fähigkeiten
+مدیریت محصول یا **Product Management** فرایند هدایت یک محصول از مرحله ایده تا طراحی، ساخت، عرضه، رشد و در نهایت بهبود یا خروج از بازار است.
 
-| Area | Skills |
-|---|---|
-| **Backend** | Python, FastAPI, Flask, REST API, Async/Await, Microservices, Web Scraping, API Integration |
-| **Frontend / Web** | HTML5, CSS3, Responsive Design, JavaScript, Web App Development |
-| **AI & Data** | NumPy, Matplotlib, Data Processing, AI Integration, AI Scripts, Chatbots, AI API Integration |
-| **Automation** | n8n, Python Automation, Telegram Bots, Workflow Automation, API Automation |
-| **Tools** | Git, GitHub, VS Code, n8n |
+مدیر محصول باید بین سه موضوع تعادل برقرار کند:
 
-## Local development / اجرای محلی / Lokale Entwicklung
+* نیاز کاربران
+* اهداف کسب‌وکار
+* محدودیت‌های فنی
 
-### Prerequisites
+به زبان ساده:
 
-- Node.js 20 or later
-- npm
+> مدیر محصول مشخص می‌کند چه چیزی ساخته شود، چرا ساخته شود و برای چه کسی ساخته شود.
 
-```powershell
-git clone https://github.com/yasinfallahati/profileyasin.git
-cd profileyasin
-npm.cmd install
-npm.cmd run dev
-```
+اما معمولاً خودش مسئول نوشتن تمام کدها یا طراحی تمام صفحات نیست.
 
-Open the local address shown by Vite, normally `http://localhost:5173`.
+---
 
-برای ویندوز از `npm.cmd` استفاده کنید تا محدودیت اجرای `npm.ps1` در PowerShell مشکلی ایجاد نکند.
+# فصل دوم: مدیر محصول چه کسی است؟
 
-Unter Windows kann `npm.cmd` verwendet werden, falls PowerShell `npm.ps1` blockiert.
+مدیر محصول یا **Product Manager (PM)** فردی است که مسئول هدایت مسیر محصول است.
 
-### Production check
+وظایف مهم PM:
 
-```powershell
-npm.cmd run build
-npm.cmd run preview
-```
+* شناخت کاربران
+* پیدا کردن مشکلات کاربران
+* تحلیل بازار
+* بررسی رقبا
+* تعریف ویژگی‌های محصول
+* تعیین اولویت‌ها
+* ایجاد Roadmap
+* همکاری با تیم طراحی
+* همکاری با تیم برنامه‌نویسی
+* تحلیل داده‌ها
+* دریافت Feedback
+* اندازه‌گیری موفقیت محصول
 
-## Project structure / ساختار پروژه / Projektstruktur
+### PM چه سؤالاتی می‌پرسد؟
 
-```text
-src/
-  App.jsx                 content, application state, sections and icons
-  main.jsx                React entry point
-  styles.css              design system and responsive styles
-  contact.css             floating navigation styles
-  components/Sidebar.jsx  navigation controls
-public/
-  pinned-projects.json    synchronized pinned-project data
-scripts/
-  sync-pinned-projects.mjs GitHub GraphQL sync script
-docs/                     multilingual product and engineering documentation
-.github/workflows/        deployment and project-sync automation
-```
+مثلاً اگر بخواهیم یک اپلیکیشن ورزشی بسازیم:
 
-## Updating selected projects / پروژه‌های منتخب / Ausgewählte Projekte
+* کاربران چه مشکلی دارند؟
+* چرا از محصولات فعلی استفاده نمی‌کنند؟
+* مهم‌ترین نیاز آنها چیست؟
+* چه ویژگی‌ای باید اول ساخته شود؟
+* آیا کاربران حاضرند پول پرداخت کنند؟
+* چگونه بفهمیم محصول موفق شده است؟
 
-1. Open the GitHub profile and choose repositories in **Customize your pins**.
-2. Open **Actions** in this repository.
-3. Run **Sync pinned GitHub projects**.
-4. The workflow updates `public/pinned-projects.json` and deploys the website.
+---
 
-For local testing, `public/pinned-projects.json` can be edited directly.
+# فصل سوم: تفاوت Product Manager و Project Manager
 
-## Deployment / انتشار / Bereitstellung
+این دو نقش شبیه هم هستند اما وظایف متفاوتی دارند.
 
-This repository deploys to GitHub Pages whenever changes are pushed to `main`.
+### Product Manager
 
-1. Open **Settings → Pages** in the GitHub repository.
-2. Set **Source** to **GitHub Actions**.
-3. Build, commit, rebase, and push:
+تمرکز:
 
-```powershell
-npm.cmd run build
-git add -A -- . ':!tmp'
-git commit -m "update portfolio"
-git pull --rebase origin main
-git push origin main
-```
+**چه چیزی بسازیم و چرا؟**
 
-4. Wait for **Deploy portfolio** in GitHub Actions to finish.
+مثلاً:
 
-The site is published at: **https://yasinfallahati.github.io/profileyasin/**
+> کاربران به برنامه تمرینی شخصی‌سازی‌شده نیاز دارند، پس باید این قابلیت را بسازیم.
 
-## Documentation / مستندات / Dokumentation
+### Project Manager
 
-Detailed product, design, engineering, AI context, deployment, and contribution documents live in [docs/README.md](docs/README.md).
+تمرکز:
 
-## Contact
+**چگونه و چه زمانی پروژه را تحویل دهیم؟**
 
-- GitHub: [@yasinfallahati](https://github.com/yasinfallahati)
-- Telegram: [@Yasinfallahatiii](https://t.me/Yasinfallahatiii)
-- Email: [fallahatiasin829@gmail.com](mailto:fallahatiasin829@gmail.com)
+مثلاً:
+
+> این قابلیت باید تا پایان ماه آماده شود.
+
+### خلاصه
+
+| نقش             | تمرکز               |
+| --------------- | ------------------- |
+| Product Manager | محصول               |
+| Project Manager | پروژه               |
+| Developer       | پیاده‌سازی          |
+| UI/UX Designer  | تجربه و ظاهر        |
+| Marketing       | جذب و نگهداشت مشتری |
+
+---
+
+# فصل چهارم: چرخه عمر محصول
+
+محصول معمولاً چند مرحله دارد:
+
+### 1. ایده
+
+ایده اولیه شکل می‌گیرد.
+
+### 2. اعتبارسنجی
+
+بررسی می‌کنیم آیا مشکل واقعاً وجود دارد یا نه.
+
+### 3. MVP
+
+ساده‌ترین نسخه قابل استفاده ساخته می‌شود.
+
+### 4. Launch
+
+محصول وارد بازار می‌شود.
+
+### 5. Growth
+
+تعداد کاربران و درآمد افزایش پیدا می‌کند.
+
+### 6. Maturity
+
+محصول به مرحله بلوغ می‌رسد.
+
+### 7. Decline
+
+ممکن است محصول دیگر جذابیت گذشته را نداشته باشد.
+
+---
+
+# فصل پنجم: ایده محصول
+
+هر ایده خوب الزاماً محصول خوبی نیست.
+
+یک ایده زمانی ارزشمند است که بتواند یک مشکل واقعی را حل کند.
+
+مثلاً:
+
+ایده ضعیف:
+
+> یک اپلیکیشن دیگر برای یادداشت‌برداری بسازیم.
+
+ایده بهتر:
+
+> دانش‌آموزانی که برای کنکور برنامه‌ریزی می‌کنند نمی‌دانند چگونه پیشرفت خود را اندازه‌گیری کنند؛ اپلیکیشن ما برنامه مطالعه و گزارش پیشرفت ارائه می‌دهد.
+
+---
+
+# Problem Statement
+
+Problem Statement یعنی تعریف دقیق مشکل.
+
+فرمول ساده:
+
+**کاربر + مشکل + شرایط + اثر مشکل**
+
+مثال:
+
+> دانش‌آموزان دبیرستانی هنگام برنامه‌ریزی مطالعه نمی‌توانند میزان پیشرفت واقعی خود را به‌صورت دقیق مشاهده کنند و در نتیجه برنامه خود را به‌درستی اصلاح نمی‌کنند.
+
+---
+
+# فصل ششم: شناخت کاربر
+
+قبل از ساخت محصول باید کاربر را بشناسیم.
+
+سؤالات مهم:
+
+* کاربر چه کسی است؟
+* چه سنی دارد؟
+* چه کاری انجام می‌دهد؟
+* چه مشکلی دارد؟
+* الان چگونه مشکل را حل می‌کند؟
+* چه چیزی برایش مهم است؟
+* چه چیزی باعث می‌شود محصول ما را انتخاب کند؟
+
+---
+
+# فصل هفتم: Persona
+
+Persona یک شخصیت فرضی اما مبتنی بر داده است که نماینده یک گروه از کاربران است.
+
+مثال:
+
+### Persona
+
+نام: علی
+
+سن: ۲۰ سال
+
+شغل: دانشجو
+
+هدف:
+
+پیدا کردن برنامه تمرینی مناسب.
+
+مشکل:
+
+نمی‌داند چه تمرینی برای سطح بدنش مناسب است.
+
+رفتار:
+
+بیشتر از موبایل استفاده می‌کند.
+
+نیاز:
+
+برنامه ساده، شخصی‌سازی‌شده و قابل پیگیری.
+
+---
+
+# فصل هشتم: تحقیقات بازار
+
+Market Research یعنی بررسی بازار قبل از ساخت محصول.
+
+موارد مهم:
+
+* اندازه بازار
+* مشتریان
+* رقبا
+* روند بازار
+* قیمت‌ها
+* نیاز کاربران
+* فرصت‌های موجود
+
+### روش‌های تحقیق
+
+#### مصاحبه
+
+با کاربران واقعی صحبت می‌کنیم.
+
+#### پرسشنامه
+
+از تعداد زیادی کاربر سؤال می‌پرسیم.
+
+#### مشاهده
+
+رفتار واقعی کاربران را بررسی می‌کنیم.
+
+#### تحلیل رقبا
+
+محصولات مشابه را بررسی می‌کنیم.
+
+---
+
+# فصل نهم: تحلیل رقبا
+
+برای تحلیل رقبا می‌توانیم یک جدول ایجاد کنیم:
+
+| ویژگی       | محصول ما | رقیب A | رقیب B |
+| ----------- | -------- | ------ | ------ |
+| برنامه شخصی | ✓        | ✓      | ✗      |
+| مربی آنلاین | ✓        | ✗      | ✓      |
+| هوش مصنوعی  | ✓        | ✗      | ✓      |
+| قیمت مناسب  | ✓        | ✗      | ✓      |
+
+هدف فقط کپی کردن رقبا نیست.
+
+هدف پیدا کردن **مزیت رقابتی** است.
+
+---
+
+# فصل دهم: Value Proposition
+
+Value Proposition یعنی:
+
+> چرا کاربر باید محصول ما را انتخاب کند؟
+
+یک Value Proposition خوب باید واضح باشد.
+
+مثال:
+
+> برنامه تمرینی شخصی‌سازی‌شده با استفاده از هوش مصنوعی، بدون نیاز به مربی حضوری.
+
+ساختار ساده:
+
+**برای [کاربر] که [مشکل] دارد، محصول ما [راه‌حل] را ارائه می‌دهد که [مزیت اصلی] را ایجاد می‌کند.**
+
+---
+
+# فصل یازدهم: Product-Market Fit
+
+Product-Market Fit یعنی محصول ما واقعاً با نیاز بازار هماهنگ شده است.
+
+نشانه‌های آن:
+
+* کاربران دوباره از محصول استفاده می‌کنند.
+* کاربران محصول را به دیگران معرفی می‌کنند.
+* نرخ Retention مناسب است.
+* کاربران حاضر به پرداخت هستند.
+* رشد طبیعی اتفاق می‌افتد.
+
+---
+
+# فصل دوازدهم: MVP
+
+MVP مخفف:
+
+**Minimum Viable Product**
+
+یعنی:
+
+> حداقل محصول قابل استفاده
+
+MVP قرار نیست محصول ناقص و بی‌کیفیت باشد.
+
+بلکه باید کوچک‌ترین نسخه‌ای باشد که بتواند فرضیه اصلی ما را آزمایش کند.
+
+مثلاً فرض کنیم می‌خواهیم پلتفرم ورزشی هوشمند بسازیم.
+
+نسخه نهایی:
+
+* مربی
+* متخصص تغذیه
+* AI
+* فروشگاه
+* شبکه اجتماعی
+* برنامه تمرینی
+* چت
+* پرداخت
+
+اما MVP می‌تواند فقط شامل:
+
+* ثبت‌نام
+* تعیین هدف
+* دریافت اطلاعات کاربر
+* تولید برنامه تمرینی
+* نمایش برنامه
+
+باشد.
+
+---
+
+# فصل سیزدهم: Feature
+
+Feature یعنی یک قابلیت محصول.
+
+مثلاً:
+
+* Login
+* Register
+* Search
+* Chat
+* Payment
+* Notification
+* AI Recommendation
+
+اما هر Feature ارزش یکسانی ندارد.
+
+بنابراین باید آنها را اولویت‌بندی کنیم.
+
+---
+
+# اولویت‌بندی Features
+
+یکی از روش‌های معروف:
+
+## روش MoSCoW
+
+### Must Have
+
+حتماً باید وجود داشته باشد.
+
+### Should Have
+
+مهم است اما ضروری نیست.
+
+### Could Have
+
+اگر زمان و منابع وجود داشت.
+
+### Won't Have
+
+فعلاً ساخته نمی‌شود.
+
+مثال:
+
+| قابلیت            | اولویت |
+| ----------------- | ------ |
+| ثبت‌نام           | Must   |
+| ورود              | Must   |
+| برنامه تمرینی     | Must   |
+| حالت تاریک        | Could  |
+| چت صوتی           | Could  |
+| شبکه اجتماعی کامل | Won't  |
+
+---
+
+# فصل چهاردهم: Roadmap
+
+Roadmap نقشه مسیر محصول است.
+
+مثلاً:
+
+### ماه اول
+
+* Authentication
+* پروفایل
+* Dashboard
+
+### ماه دوم
+
+* برنامه تمرینی
+* سیستم تغذیه
+* Notification
+
+### ماه سوم
+
+* AI
+* تحلیل داده
+* پرداخت
+
+Roadmap الزاماً برنامه دقیق روزانه نیست.
+
+بلکه جهت کلی محصول را نشان می‌دهد.
+
+---
+
+# فصل پانزدهم: User Story
+
+User Story روشی برای بیان نیاز کاربر است.
+
+فرمول:
+
+> به عنوان یک [نوع کاربر] می‌خواهم [کاری انجام دهم] تا [دلیل/ارزش].
+
+مثال:
+
+> به عنوان یک ورزشکار می‌خواهم هدف ورزشی خود را انتخاب کنم تا برنامه مناسب دریافت کنم.
+
+---
+
+# Acceptance Criteria
+
+معیار پذیرش مشخص می‌کند چه زمانی یک قابلیت واقعاً تکمیل شده است.
+
+مثلاً برای Login:
+
+* کاربر بتواند ایمیل وارد کند.
+* رمز عبور بررسی شود.
+* اطلاعات اشتباه پیام خطا بدهد.
+* ورود موفق کاربر را به Dashboard منتقل کند.
+
+---
+
+# فصل شانزدهم: KPI
+
+KPI یعنی:
+
+**Key Performance Indicator**
+
+یا شاخص کلیدی عملکرد.
+
+مثال:
+
+* تعداد کاربران فعال
+* تعداد ثبت‌نام‌ها
+* درآمد
+* Retention
+* Conversion Rate
+* تعداد خرید
+* زمان استفاده
+
+---
+
+# مهم‌ترین Metrics
+
+## DAU
+
+Daily Active Users
+
+تعداد کاربران فعال روزانه.
+
+## WAU
+
+Weekly Active Users
+
+تعداد کاربران فعال هفتگی.
+
+## MAU
+
+Monthly Active Users
+
+تعداد کاربران فعال ماهانه.
+
+## Retention
+
+چند درصد کاربران بعد از مدتی دوباره برمی‌گردند.
+
+## Churn
+
+چند درصد کاربران محصول را ترک می‌کنند.
+
+---
+
+# فصل هفدهم: Funnel
+
+Funnel یا قیف محصول مسیر کاربر را نشان می‌دهد.
+
+مثلاً:
+
+بازدید سایت
+
+↓
+
+ثبت‌نام
+
+↓
+
+ساخت پروفایل
+
+↓
+
+استفاده از محصول
+
+↓
+
+خرید
+
+ممکن است:
+
+10000 نفر وارد سایت شوند.
+
+3000 نفر ثبت‌نام کنند.
+
+1500 نفر از محصول استفاده کنند.
+
+300 نفر خرید کنند.
+
+در اینجا باید بررسی کنیم چرا تعداد کاربران در هر مرحله کاهش پیدا می‌کند.
+
+---
+
+# Conversion Rate
+
+Conversion Rate یعنی درصد کاربرانی که یک اقدام مشخص را انجام داده‌اند.
+
+فرمول:
+
+**Conversion Rate = تعداد تبدیل ÷ تعداد کاربران × 100**
+
+مثلاً:
+
+1000 نفر سایت را ببینند و 100 نفر خرید کنند:
+
+Conversion Rate = 10%
+
+---
+
+# فصل هجدهم: Agile
+
+Agile یک روش تفکر و مدیریت توسعه محصول است که روی:
+
+* انعطاف‌پذیری
+* تحویل سریع
+* Feedback
+* همکاری تیمی
+* بهبود مستمر
+
+تمرکز دارد.
+
+در Agile به جای اینکه چند ماه محصول را بسازیم و آخر کار بفهمیم اشتباه بوده، محصول را مرحله‌به‌مرحله توسعه می‌دهیم.
+
+---
+
+# Scrum
+
+یکی از Frameworkهای معروف Agile است.
+
+مفاهیم مهم Scrum:
+
+* Sprint
+* Backlog
+* Product Owner
+* Scrum Master
+* Development Team
+
+### Sprint
+
+یک بازه زمانی مشخص برای انجام تعدادی کار.
+
+مثلاً:
+
+Sprint دو هفته‌ای.
+
+---
+
+# Product Backlog
+
+لیست تمام کارها و قابلیت‌هایی است که ممکن است برای محصول انجام شوند.
+
+مثلاً:
+
+* Login
+* Register
+* Profile
+* Payment
+* Search
+* Notifications
+
+PM باید Backlog را مدیریت و اولویت‌بندی کند.
+
+---
+
+# فصل نوزدهم: همکاری با تیم فنی
+
+مدیر محصول نباید صرفاً بگوید:
+
+> این قابلیت را بساز.
+
+باید توضیح دهد:
+
+* مشکل چیست؟
+* کاربر چه کسی است؟
+* چرا این قابلیت مهم است؟
+* چه نتیجه‌ای انتظار داریم؟
+* معیار موفقیت چیست؟
+
+تیم فنی سپس درباره روش پیاده‌سازی تصمیم می‌گیرد.
+
+---
+
+# فصل بیستم: مدیریت Backlog
+
+Backlog باید:
+
+* مرتب باشد.
+* اولویت‌بندی شده باشد.
+* قابل فهم باشد.
+* نیازهای جدید در آن ثبت شوند.
+* موارد غیرضروری حذف شوند.
+
+یک Backlog ضعیف باعث سردرگمی تیم می‌شود.
+
+---
+
+# فصل بیست‌ویکم: تست محصول
+
+قبل از انتشار باید محصول را آزمایش کنیم.
+
+انواع تست:
+
+### Functional Testing
+
+آیا قابلیت درست کار می‌کند؟
+
+### Usability Testing
+
+آیا کاربر می‌تواند به‌راحتی از آن استفاده کند؟
+
+### Performance Testing
+
+آیا محصول سریع و پایدار است؟
+
+### Security Testing
+
+آیا اطلاعات کاربران امن هستند؟
+
+---
+
+# فصل بیست‌ودوم: Feedback
+
+Feedback یعنی بازخورد کاربران.
+
+منابع Feedback:
+
+* نظرات کاربران
+* پشتیبانی
+* فرم‌های نظرسنجی
+* Review
+* شبکه‌های اجتماعی
+* Analytics
+* مصاحبه
+
+اما هر Feedback نباید بلافاصله تبدیل به Feature شود.
+
+باید بررسی کنیم:
+
+> آیا این مشکل تعداد زیادی از کاربران را تحت تأثیر قرار می‌دهد؟
+
+---
+
+# فصل بیست‌وسوم: Data-Driven Product Management
+
+مدیریت محصول باید تا حد ممکن بر اساس داده انجام شود.
+
+مثلاً به جای اینکه بگوییم:
+
+> فکر می‌کنم کاربران این قابلیت را دوست دارند.
+
+می‌توانیم آزمایش کنیم.
+
+مثلاً:
+
+نسخه A:
+
+دکمه «شروع برنامه»
+
+نسخه B:
+
+دکمه «برنامه شخصی من»
+
+و بررسی کنیم کدام نرخ کلیک بیشتری دارد.
+
+این کار را **A/B Testing** می‌نامیم.
+
+---
+
+# فصل بیست‌وچهارم: مدیریت ریسک
+
+هر محصول ریسک دارد.
+
+انواع ریسک:
+
+### Market Risk
+
+آیا بازار محصول را می‌خواهد؟
+
+### Technical Risk
+
+آیا از نظر فنی قابل ساخت است؟
+
+### Financial Risk
+
+آیا هزینه ساخت منطقی است؟
+
+### Security Risk
+
+آیا اطلاعات امن هستند؟
+
+### Business Risk
+
+آیا مدل درآمدی قابل اجرا است؟
+
+---
+
+# فصل بیست‌وپنجم: اشتباهات رایج PM
+
+### اشتباه اول
+
+ساخت محصول بدون شناخت کاربر.
+
+### اشتباه دوم
+
+ساخت Featureهای زیاد.
+
+### اشتباه سوم
+
+توجه نکردن به داده.
+
+### اشتباه چهارم
+
+کپی کردن رقبا بدون مزیت رقابتی.
+
+### اشتباه پنجم
+
+گوش دادن بیش از حد به یک کاربر.
+
+### اشتباه ششم
+
+نداشتن اولویت‌بندی.
+
+### اشتباه هفتم
+
+تغییر دائمی Roadmap بدون دلیل.
+
+---
+
+# فصل بیست‌وششم: ابزارهای مدیریت محصول
+
+ابزارهای رایج:
+
+* Jira
+* Trello
+* Notion
+* Linear
+* ClickUp
+* Figma
+* Miro
+* Google Analytics
+* Mixpanel
+
+هر ابزار برای یک بخش از فرایند مناسب‌تر است.
+
+مثلاً:
+
+**Figma → طراحی**
+
+**Jira → مدیریت توسعه**
+
+**Notion → مستندسازی**
+
+**Mixpanel → تحلیل رفتار کاربر**
+
+---
+
+# فصل بیست‌وهفتم: هوش مصنوعی در مدیریت محصول
+
+هوش مصنوعی می‌تواند بسیاری از کارهای PM را سریع‌تر کند.
+
+## 1. تحلیل Feedback
+
+می‌توان هزاران نظر کاربر را به AI داد و از آن خواست:
+
+* مشکلات را دسته‌بندی کند.
+* مشکلات پرتکرار را پیدا کند.
+* احساس کاربران را تحلیل کند.
+* Featureهای پیشنهادی استخراج کند.
+
+---
+
+## 2. ساخت User Story
+
+مثلاً به AI بگوییم:
+
+> برای قابلیت ثبت برنامه تمرینی، User Story و Acceptance Criteria بنویس.
+
+AI می‌تواند چند User Story تولید کند.
+
+---
+
+## 3. تحلیل رقبا
+
+AI می‌تواند اطلاعات رقبا را دسته‌بندی و مقایسه کند.
+
+---
+
+## 4. تولید PRD
+
+PRD مخفف:
+
+**Product Requirements Document**
+
+است.
+
+در PRD معمولاً مواردی مانند:
+
+* هدف محصول
+* مشکل
+* کاربران
+* نیازمندی‌ها
+* Features
+* معیار موفقیت
+* محدودیت‌ها
+
+توضیح داده می‌شود.
+
+---
+
+# نمونه Prompt برای AI
+
+> تو یک Product Manager حرفه‌ای هستی.
+> من می‌خواهم محصولی برای مدیریت تمرین ورزشی بسازم.
+> کاربران هدف ورزشکاران مبتدی هستند.
+> مشکل اصلی آنها نداشتن برنامه مناسب و عدم پیگیری پیشرفت است.
+> یک PRD مقدماتی شامل Problem، Target Users، Features، MVP، User Stories، Acceptance Criteria و KPI برای این محصول ایجاد کن.
+
+---
+
+# فصل بیست‌وهشتم: مثال عملی
+
+فرض کنیم می‌خواهیم:
+
+**یک پلتفرم ورزشی هوشمند**
+
+بسازیم.
+
+## مرحله اول: Problem
+
+کاربران نمی‌دانند چه برنامه‌ای برای بدن و هدفشان مناسب است.
+
+## مرحله دوم: Target User
+
+ورزشکاران مبتدی 18 تا 30 سال.
+
+## مرحله سوم: Solution
+
+یک پلتفرم که بر اساس اطلاعات کاربر برنامه تولید کند.
+
+## مرحله چهارم: MVP
+
+نسخه اولیه:
+
+* ثبت‌نام
+* پروفایل
+* هدف ورزشی
+* قد و وزن
+* سطح فعالیت
+* تولید برنامه
+* نمایش برنامه
+
+## مرحله پنجم: KPI
+
+مثلاً:
+
+* تعداد ثبت‌نام
+* تعداد برنامه‌های ساخته‌شده
+* تعداد کاربران فعال
+* Retention
+* Conversion
+
+## مرحله ششم: Feedback
+
+از کاربران می‌پرسیم:
+
+* آیا برنامه برایت مناسب بود؟
+* چه چیزی سخت بود؟
+* چه چیزی کم داشت؟
+* آیا دوباره از آن استفاده می‌کنی؟
+
+سپس محصول را اصلاح می‌کنیم.
+
+---
+
+# فصل بیست‌ونهم: واژه‌های مهم مدیریت محصول
+
+| اصطلاح             | معنی                     |
+| ------------------ | ------------------------ |
+| Product            | محصول                    |
+| Product Manager    | مدیر محصول               |
+| Feature            | قابلیت                   |
+| MVP                | حداقل محصول قابل استفاده |
+| Roadmap            | نقشه مسیر محصول          |
+| Backlog            | فهرست کارها              |
+| User Story         | داستان کاربر             |
+| Persona            | شخصیت کاربر              |
+| KPI                | شاخص عملکرد              |
+| Metric             | معیار اندازه‌گیری        |
+| Retention          | بازگشت کاربران           |
+| Churn              | ریزش کاربران             |
+| Conversion         | تبدیل                    |
+| Funnel             | قیف                      |
+| A/B Test           | آزمایش دو نسخه           |
+| PRD                | سند نیازمندی محصول       |
+| Agile              | روش توسعه چابک           |
+| Scrum              | چارچوب Agile             |
+| Sprint             | دوره توسعه               |
+| Stakeholder        | ذی‌نفع                   |
+| Product-Market Fit | تناسب محصول و بازار      |
+| Value Proposition  | ارزش پیشنهادی            |
+
+---
+
+# نقشه یادگیری مدیریت محصول
+
+برای یادگیری مقدماتی، این ترتیب مناسب است:
+
+### مرحله 1
+
+مفاهیم Product Management
+
+↓
+
+### مرحله 2
+
+شناخت کاربر و Problem
+
+↓
+
+### مرحله 3
+
+Market Research
+
+↓
+
+### مرحله 4
+
+Persona و User Journey
+
+↓
+
+### مرحله 5
+
+Value Proposition
+
+↓
+
+### مرحله 6
+
+MVP
+
+↓
+
+### مرحله 7
+
+Feature Prioritization
+
+↓
+
+### مرحله 8
+
+Roadmap
+
+↓
+
+### مرحله 9
+
+User Story و PRD
+
+↓
+
+### مرحله 10
+
+Agile و Scrum
+
+↓
+
+### مرحله 11
+
+KPI و Analytics
+
+↓
+
+### مرحله 12
+
+A/B Testing
+
+↓
+
+### مرحله 13
+
+Product Growth
+
+↓
+
+### مرحله 14
+
+استفاده از AI در Product Management
+
+---
+
+# جمع‌بندی نهایی
+
+مدیریت محصول فقط مدیریت یک پروژه یا نوشتن لیست Featureها نیست.
+
+یک Product Manager باید بتواند بین سه حوزه ارتباط برقرار کند:
+
+**Business + User + Technology**
+
+یعنی:
+
+**کسب‌وکار + کاربر + فناوری**
+
+یک PM خوب دائماً سه سؤال اصلی را دنبال می‌کند:
+
+### 1. چه مشکلی را حل می‌کنیم؟
+
+### 2. برای چه کسی این مشکل را حل می‌کنیم؟
+
+### 3. از کجا بفهمیم راه‌حل ما موفق بوده است؟
+
+اگر این سه سؤال به‌درستی پاسخ داده شوند، احتمال ساخت یک محصول موفق بسیار بیشتر می‌شود.
+
+## فرمول ساده مدیریت محصول
+
+**Problem → User → Research → Solution → MVP → Launch → Measure → Feedback → Improve**
+
+و این چرخه دائماً تکرار می‌شود.
+
+---
+
+# تمرین نهایی
+
+برای اینکه مفاهیم این جزوه واقعاً یاد گرفته شوند، یک محصول فرضی انتخاب کن و موارد زیر را برای آن بنویس:
+
+1. نام محصول
+2. مشکل اصلی
+3. کاربران هدف
+4. Persona
+5. رقبای اصلی
+6. Value Proposition
+7. پنج Feature
+8. MVP
+9. اولویت Featureها با MoSCoW
+10. Roadmap سه‌ماهه
+11. پنج User Story
+12. Acceptance Criteria
+13. پنج KPI
+14. Funnel
+15. سه ریسک اصلی
+16. پنج سؤال برای مصاحبه با کاربران
+17. سه قابلیت که می‌توان با AI به محصول اضافه کرد
+
+اگر بتوانی این تمرین را به‌درستی انجام دهی، بخش بزرگی از مفاهیم مقدماتی مدیریت محصول را به‌صورت عملی یاد گرفته‌ای.
+

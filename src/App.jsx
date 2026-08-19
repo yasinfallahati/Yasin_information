@@ -337,30 +337,43 @@ function Terminal({ t }) {
 }
 
 /* ========================
-   FLOATING PARTICLES
+   FLOATING PARTICLES — Immersive
    ======================== */
 function FloatingParticles() {
+  const particles = Array.from({ length: 30 }).map((_, i) => {
+    const colors = [
+      'rgba(74, 142, 255, 0.6)',
+      'rgba(139, 92, 246, 0.5)',
+      'rgba(6, 182, 212, 0.45)',
+      'rgba(74, 142, 255, 0.4)',
+      'rgba(16, 185, 129, 0.35)'
+    ];
+    const size = 1.5 + Math.random() * 4;
+    return (
+      <div
+        key={i}
+        className="particle"
+        style={{
+          '--delay': `${Math.random() * 8}s`,
+          '--duration': `${18 + Math.random() * 25}s`,
+          '--x': `${Math.random() * 100}%`,
+          '--y': `${60 + Math.random() * 40}%`,
+          '--size': `${size}px`,
+          background: colors[i % colors.length],
+          boxShadow: `0 0 ${size * 3}px ${colors[i % colors.length]}`
+        }}
+      />
+    );
+  });
   return (
     <div className="particles-container" aria-hidden="true">
-      {Array.from({ length: 20 }).map((_, i) => (
-        <div
-          key={i}
-          className="particle"
-          style={{
-            '--delay': `${Math.random() * 5}s`,
-            '--duration': `${15 + Math.random() * 20}s`,
-            '--x': `${Math.random() * 100}%`,
-            '--y': `${Math.random() * 100}%`,
-            '--size': `${2 + Math.random() * 4}px`
-          }}
-        />
-      ))}
+      {particles}
     </div>
   );
 }
 
 /* ========================
-   TEXT REVEAL COMPONENT
+   TEXT REVEAL COMPONENT — 3D Flip
    ======================== */
 function TextReveal({ text, className = '', delay = 0 }) {
   return (
@@ -369,7 +382,7 @@ function TextReveal({ text, className = '', delay = 0 }) {
         <span
           key={i}
           className="text-reveal-char"
-          style={{ animationDelay: `${delay + i * 0.03}s` }}
+          style={{ animationDelay: `${delay + i * 0.035}s` }}
         >
           {char === ' ' ? '\u00A0' : char}
         </span>
@@ -379,7 +392,7 @@ function TextReveal({ text, className = '', delay = 0 }) {
 }
 
 /* ========================
-   COUNTER ANIMATION
+   COUNTER ANIMATION — Immersive
    ======================== */
 function AnimatedCounter({ value, suffix = '' }) {
   const [count, setCount] = useState(0);
@@ -403,18 +416,21 @@ function AnimatedCounter({ value, suffix = '' }) {
     if (!isVisible) return;
     let start = 0;
     const end = parseInt(value);
-    const duration = 2000;
-    const increment = end / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
+    const duration = 2200;
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(eased * end);
+      setCount(current);
+      if (progress < 1) {
+        requestAnimationFrame(animate);
       }
-    }, 16);
-    return () => clearInterval(timer);
+    };
+
+    requestAnimationFrame(animate);
   }, [isVisible, value]);
 
   return <span ref={ref} className="counter">{count}{suffix}</span>;
@@ -480,6 +496,61 @@ function useScrollAnimation() {
 }
 
 /* ========================
+   MOUSE 3D TRACKING
+   ======================== */
+function useMouseParallax() {
+  useEffect(() => {
+    const cards = document.querySelectorAll('.value-card, .project-card, .terminal-card, .social-link, .contact-email');
+    const handleMouseMove = (e) => {
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+}
+
+/* ========================
+   SCROLL PROGRESS
+   ======================== */
+function ScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        height: '3px',
+        width: `${progress}%`,
+        background: 'linear-gradient(90deg, #4a8eff, #8b5cf6, #06b6d4)',
+        zIndex: 9999,
+        transition: 'width 0.1s linear',
+        boxShadow: '0 0 12px rgba(74, 142, 255, 0.5), 0 0 30px rgba(139, 92, 246, 0.3)',
+        borderRadius: '0 2px 2px 0'
+      }}
+      aria-hidden="true"
+    />
+  );
+}
+
+/* ========================
    PARALLAX HOOK
    ======================== */
 function useParallax() {
@@ -515,6 +586,7 @@ export default function App() {
 
   useScrollAnimation();
   useParallax();
+  useMouseParallax();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 100);
@@ -549,6 +621,7 @@ export default function App() {
 
   return (
     <div className={`app-shell ${loaded ? 'loaded' : ''}`}>
+      <ScrollProgress />
       <FloatingParticles />
       <Sidebar
         items={nav}
