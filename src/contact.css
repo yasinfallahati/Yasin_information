@@ -14,7 +14,7 @@
   padding: 18px 14px;
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-2xl);
-  background: var(--glass);
+  background: rgba(14, 22, 48, 0.85);
   backdrop-filter: blur(28px) saturate(1.3);
   box-shadow: var(--shadow-xl), var(--shadow-glow);
   transition: var(--transition);
