@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über mich",
+    "projects": "Projekte",
+    "skills": "Fähigkeiten",
+    "journey": "Lernweg",
+    "certificates": "Zertifikate",
+    "contact": "Kontakt",
+    "github": "GitHub"
+  },
+  "hero": {
+    "greeting": "Hallo, ich bin",
+    "role1": "KI-Ingenieur",
+    "role2": "Python-Entwickler",
+    "role3": "Automatisierungsbauer",
+    "bio": "Intelligente Lösungen entwickeln, die einfach, zuverlässig und wirklich nützlich sind.",
+    "cta_projects": "Projekte ansehen",
+    "cta_github": "Mein GitHub",
+    "stat_repos": "Repos",
+    "stat_stars": "Sterne",
+    "stat_followers": "Follower",
+    "terminal_title": "Terminal"
+  },
+  "about": {
+    "title": "Über mich",
+    "subtitle": "Wer ich bin und was ich tue",
+    "values": [
+      {
+        "title": "Sauberer Code",
+        "description": "Lesbaren, wartbaren und hochwertigen Code schreiben"
+      },
+      {
+        "title": "Schnelle Lösungen",
+        "description": "Schnelle und skalierbare Lösungen entwickeln"
+      },
+      {
+        "title": "Kontinuierliches Lernen",
+        "description": "Immer lernen und technisch wachsen"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Meine Fähigkeiten",
+    "subtitle": "Technologien und Tools, mit denen ich arbeite"
+  },
+  "projects": {
+    "title": "Meine Projekte",
+    "subtitle": "Meine Arbeit in KI, Backend und Automatisierung",
+    "view_all": "Alle Projekte ansehen",
+    "view_project": "Projekt ansehen",
+    "github": "GitHub",
+    "demo": "Demo",
+    "technologies": "Technologien",
+    "filter_all": "Alle",
+    "search_placeholder": "Projekte suchen...",
+    "no_results": "Keine Projekte gefunden"
+  },
+  "journey": {
+    "title": "Lernweg",
+    "subtitle": "Meine Roadmap zur beruflichen Entwicklung",
+    "status_completed": "Abgeschlossen",
+    "status_in_progress": "In Bearbeitung",
+    "status_planned": "Geplant"
+  },
+  "certificates": {
+    "title": "Zertifikate",
+    "subtitle": "Meine Zertifikate und Kurse",
+    "issuer": "Aussteller",
+    "instructor": "Dozent"
+  },
+  "contact": {
+    "title": "Kontakt aufnehmen",
+    "subtitle": "Bereit zur Zusammenarbeit und Vernetzung",
+    "email_cta": "E-Mail senden",
+    "telegram_cta": "Telegram Nachricht",
+    "description": "Immer gerne über neue Projekte, Zusammenarbeit oder einfach über Tech quatschen."
+  },
+  "footer": {
+    "copyright": "Gestaltet & Entwickelt von Yasin Fallahati",
+    "made_with": "Erstellt mit"
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Fehler beim Laden",
+    "retry": "Erneut versuchen",
+    "close": "Schließen",
+    "back": "Zurück"
+  }
+}

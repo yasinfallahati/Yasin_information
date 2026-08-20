@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "journey": "Journey",
+    "certificates": "Certificates",
+    "contact": "Contact",
+    "github": "GitHub"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "role1": "AI Engineer",
+    "role2": "Python Developer",
+    "role3": "Automation Builder",
+    "bio": "Building intelligent solutions that are simple, reliable, and genuinely useful.",
+    "cta_projects": "View Projects",
+    "cta_github": "My GitHub",
+    "stat_repos": "Repos",
+    "stat_stars": "Stars",
+    "stat_followers": "Followers",
+    "terminal_title": "Terminal"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Who I am and what I do",
+    "values": [
+      {
+        "title": "Clean Code",
+        "description": "Writing readable, maintainable, and high-quality code"
+      },
+      {
+        "title": "Fast Solutions",
+        "description": "Building fast and scalable solutions"
+      },
+      {
+        "title": "Continuous Learning",
+        "description": "Always learning and growing technically"
+      }
+    ]
+  },
+  "skills": {
+    "title": "My Skills",
+    "subtitle": "Technologies and tools I work with"
+  },
+  "projects": {
+    "title": "My Projects",
+    "subtitle": "My work in AI, backend, and automation",
+    "view_all": "View All Projects",
+    "view_project": "View Project",
+    "github": "GitHub",
+    "demo": "Demo",
+    "technologies": "Technologies",
+    "filter_all": "All",
+    "search_placeholder": "Search projects...",
+    "no_results": "No projects found"
+  },
+  "journey": {
+    "title": "Learning Journey",
+    "subtitle": "My professional development roadmap",
+    "status_completed": "Completed",
+    "status_in_progress": "In Progress",
+    "status_planned": "Planned"
+  },
+  "certificates": {
+    "title": "Certificates",
+    "subtitle": "My certifications and courses",
+    "issuer": "Issuer",
+    "instructor": "Instructor"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Ready to collaborate and connect",
+    "email_cta": "Send Email",
+    "telegram_cta": "Message on Telegram",
+    "description": "Always happy to discuss new projects, collaborations, or just chat about tech."
+  },
+  "footer": {
+    "copyright": "Designed & Developed by Yasin Fallahati",
+    "made_with": "Built with"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error loading",
+    "retry": "Retry",
+    "close": "Close",
+    "back": "Back"
+  }
+}
