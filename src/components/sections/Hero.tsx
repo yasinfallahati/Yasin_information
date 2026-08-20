@@ -28,6 +28,7 @@ export default function Hero() {
       },
       cta_projects: { fa: "مشاهده پروژه‌ها", en: "View Projects", de: "Projekte ansehen" },
       cta_github: { fa: "گیت‌هاب من", en: "My GitHub", de: "Mein GitHub" },
+      cta_contact: { fa: "ارتباط با من", en: "Contact Me", de: "Kontaktiere mich" },
       stat_repos: { fa: "مخزن", en: "Repos", de: "Repos" },
       stat_stars: { fa: "ستاره", en: "Stars", de: "Sterne" },
       stat_followers: { fa: "دنبال‌کننده", en: "Followers", de: "Follower" },
@@ -153,6 +154,12 @@ export default function Hero() {
               <GithubIcon className="h-4 w-4" />
               {t("cta_github")}
             </a>
+            <Link
+              href={`/${locale}/contact`}
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-700 px-6 py-3 text-sm font-medium text-gray-50 transition-all hover:bg-gray-800"
+            >
+              {t("cta_contact")}
+            </Link>
           </motion.div>
 
           {/* Stats */}

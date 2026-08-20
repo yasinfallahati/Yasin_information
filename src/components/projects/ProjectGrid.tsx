@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { Search } from "lucide-react";
-import { Project, Locale, ProjectCategory } from "@/types/project";
+import { Project, Locale } from "@/types/project";
+import { isRtl } from "@/lib/i18n";
 import ProjectCard from "./ProjectCard";
 
 interface ProjectGridProps {
@@ -19,6 +20,7 @@ const categoryLabels: Record<Locale, Record<string, string>> = {
 export default function ProjectGrid({ projects }: ProjectGridProps) {
   const params = useParams();
   const locale = (params.locale as Locale) || "fa";
+  const rtl = isRtl(locale);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<string>("all");
 
@@ -39,13 +41,13 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
     <div>
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+          <Search className={`absolute top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500 ${rtl ? "right-3" : "left-3"}`} />
           <input
             type="text"
             placeholder={locale === "fa" ? "جستجوی پروژه..." : locale === "de" ? "Projekte suchen..." : "Search projects..."}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-lg border border-gray-700 bg-gray-800 py-2.5 pl-10 pr-4 text-sm text-gray-50 placeholder-gray-500 outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/25 transition-colors"
+            className={`w-full rounded-lg border border-gray-700 bg-gray-800 py-2.5 text-sm text-gray-50 placeholder-gray-500 outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/25 transition-colors ${rtl ? "pl-4 pr-10" : "pr-4 pl-10"}`}
           />
         </div>
 

@@ -8,24 +8,27 @@ import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { useInView } from "@/hooks/useInView";
 
-const contactContent: Record<Locale, { title: string; subtitle: string; description: string; emailCta: string; telegramCta: string }> = {
+const contactContent: Record<Locale, { title: string; subtitle: string; cta: string; description: string; emailCta: string; telegramCta: string }> = {
   fa: {
-    title: "ارتباط با من",
+    title: "بیایید چیزی هوشمند بسازیم",
     subtitle: "آماده همکاری و گفتگو",
+    cta: "بیایید چیزی هوشمند بسازیم.",
     description: "همیشه خوشحالم که درباره پروژه‌های جدید، همکاری‌ها یا فقط گفتگوی فنی صحبت کنم.",
     emailCta: "ارسال ایمیل",
     telegramCta: "پیام در تلگرام",
   },
   en: {
-    title: "Get In Touch",
+    title: "Let's build something intelligent",
     subtitle: "Ready to collaborate and connect",
+    cta: "Let's build something intelligent.",
     description: "Always happy to discuss new projects, collaborations, or just chat about tech.",
     emailCta: "Send Email",
     telegramCta: "Message on Telegram",
   },
   de: {
-    title: "Kontakt aufnehmen",
+    title: "Lass uns etwas Intelligentes entwickeln",
     subtitle: "Bereit zur Zusammenarbeit und Vernetzung",
+    cta: "Lass uns etwas Intelligentes entwickeln.",
     description: "Immer gerne über neue Projekte, Zusammenarbeit oder einfach über Tech quatschen.",
     emailCta: "E-Mail senden",
     telegramCta: "Telegram Nachricht",
@@ -49,6 +52,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mx-auto max-w-2xl text-center"
         >
+          <p className="text-xl font-semibold text-gray-50 mb-4">{content.cta}</p>
           <p className="text-base text-gray-400 leading-relaxed">{content.description}</p>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">

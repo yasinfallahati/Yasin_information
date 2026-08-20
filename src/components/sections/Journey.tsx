@@ -45,22 +45,24 @@ export default function Journey() {
         <SectionTitle title={titles.title} subtitle={titles.subtitle} />
 
         <div className="relative">
-          <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/50 via-gray-700 to-gray-800 md:left-1/2" />
+          {/* Timeline line */}
+          <div className="absolute start-4 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/50 via-gray-700 to-gray-800 md:start-1/2" />
 
           <div className="space-y-12">
             {journeySteps.map((step, i) => {
               const StatusIcon = statusIcons[step.status];
+              const isEven = i % 2 === 0;
               return (
                 <motion.div
                   key={step.id}
-                  initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                  initial={{ opacity: 0, x: isEven ? -20 : 20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? -20 : 20 }}
                   transition={{ duration: 0.5, delay: i * 0.15 }}
                   className={`relative flex flex-col gap-4 md:flex-row ${
-                    i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                    isEven ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
-                  <div className={`flex-1 ${i % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
+                  <div className={`flex-1 ${isEven ? "md:text-end" : "md:text-start"}`}>
                     <div className="rounded-xl border border-gray-700 bg-gray-800 p-6">
                       <div className="mb-3 flex items-center gap-2">
                         <StatusIcon className={`h-4 w-4 ${statusColors[step.status]}`} />
@@ -77,7 +79,7 @@ export default function Journey() {
                       <ul className="mt-4 space-y-1.5">
                         {step.items.map((item, j) => (
                           <li key={j} className="flex items-center gap-2 text-sm text-gray-400">
-                            <span className="h-1 w-1 rounded-full bg-gray-600" />
+                            <span className="h-1 w-1 rounded-full bg-gray-600 shrink-0" />
                             {item[locale]}
                           </li>
                         ))}
@@ -85,7 +87,8 @@ export default function Journey() {
                     </div>
                   </div>
 
-                  <div className="absolute left-4 md:left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center">
+                  {/* Timeline dot */}
+                  <div className="absolute start-4 md:start-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center">
                     <div className={`h-3 w-3 rounded-full border-2 ${
                       step.status === "completed"
                         ? "border-emerald-400 bg-emerald-400"

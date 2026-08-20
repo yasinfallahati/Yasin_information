@@ -1,4 +1,3 @@
-import { Locale } from "@/types/project";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";

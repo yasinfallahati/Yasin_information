@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Locale } from "@/types/project";
-import Container from "@/components/ui/Container";
-import SectionTitle from "@/components/ui/SectionTitle";
 import About from "@/components/sections/About";
 
 export async function generateMetadata({

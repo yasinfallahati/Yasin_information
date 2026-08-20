@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { Project, Locale } from "@/types/project";
 import Container from "@/components/ui/Container";
 import Card from "@/components/ui/Card";
+import { ArrowDown } from "lucide-react";
 
 interface ProjectDetailsProps {
   project: Project;
@@ -53,6 +54,26 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             </div>
           </div>
         </Card>
+
+        {project.architecture && project.architecture.length > 0 && (
+          <Card className="mt-8 p-8">
+            <h2 className="text-2xl font-bold text-gray-50 mb-6">
+              {locale === "fa" ? "معماری پروژه" : locale === "de" ? "Projektarchitektur" : "Project Architecture"}
+            </h2>
+            <div className="flex flex-col items-center gap-2">
+              {project.architecture.map((step, i) => (
+                <div key={i} className="flex flex-col items-center">
+                  <div className="rounded-lg border border-gray-700 bg-gray-900 px-6 py-3 text-sm font-medium text-gray-300 min-w-[200px] text-center">
+                    {step}
+                  </div>
+                  {i < project.architecture!.length - 1 && (
+                    <ArrowDown className="my-2 h-4 w-4 text-blue-500/50" />
+                  )}
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
       </Container>
     </section>
   );

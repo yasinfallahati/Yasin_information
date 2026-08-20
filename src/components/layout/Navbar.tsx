@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import GithubIcon from "@/components/ui/GithubIcon";
 import { Locale } from "@/types/project";
-import { isRtl } from "@/lib/i18n";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 const navItems = [
@@ -25,7 +24,6 @@ export default function Navbar() {
   const params = useParams();
   const pathname = usePathname();
   const locale = (params.locale as Locale) || "fa";
-  const rtl = isRtl(locale);
 
   return (
     <>

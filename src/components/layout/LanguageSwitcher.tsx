@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Locale } from "@/types/project";
 import { locales, localeNames, localeFlags } from "@/lib/i18n";
 

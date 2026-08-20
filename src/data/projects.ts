@@ -18,6 +18,7 @@ export const projects: Project[] = [
     technologies: ["JavaScript", "HTML", "CSS", "OpenAI API"],
     github: "https://github.com/yasinfallahati/chat-bot",
     featured: true,
+    architecture: ["Frontend UI", "API Layer", "OpenAI API", "Response Handler"],
   },
   {
     slug: "attendance-system",
@@ -36,6 +37,7 @@ export const projects: Project[] = [
     technologies: ["Python", "OpenCV", "Face Recognition", "Excel"],
     github: "https://github.com/yasinfallahati/Attendance-system",
     featured: true,
+    architecture: ["Camera Input", "Face Detection", "Recognition Engine", "Database", "Excel Export"],
   },
   {
     slug: "devaps-bot",
@@ -54,6 +56,7 @@ export const projects: Project[] = [
     technologies: ["HTML", "JavaScript", "AI API", "DevOps"],
     github: "https://github.com/yasinfallahati/devaps-bot-",
     featured: true,
+    architecture: ["User Input", "AI Processing", "DevOps Commands", "Server Execution"],
   },
   {
     slug: "todo-dashboard",

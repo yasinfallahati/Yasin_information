@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
-import { Code2, Zap, BookOpen } from "lucide-react";
+import { Code2, Zap, BookOpen, MapPin, Briefcase } from "lucide-react";
 import { Locale } from "@/types/project";
 import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/ui/SectionTitle";
@@ -39,6 +39,24 @@ const descriptions: Record<Locale, string[]> = {
   ],
 };
 
+const aboutTexts: Record<Locale, { intro: string; location: string; company: string }> = {
+  fa: {
+    intro: "من یاسین فلاحتی هستم، مهندس هوش مصنوعی و توسعه‌دهنده پایتون. تمرکز من بر ساخت راه‌حل‌های نرم‌افزاری هوشمند، اتوماسیون‌های کارآمد و ابزارهایی است که واقعاً زندگی را آسان‌تر می‌کنند.",
+    location: "ایران",
+    company: "شرکت تجارت الکترونیک شایسته",
+  },
+  en: {
+    intro: "I'm Yasin Fallahati, an AI Engineer and Python Developer. My focus is on building smart software solutions, efficient automations, and tools that genuinely make life easier.",
+    location: "Iran",
+    company: "Shayesteh Iranian E-commerce Company",
+  },
+  de: {
+    intro: "Ich bin Yasin Fallahati, KI-Ingenieur und Python-Entwickler. Mein Fokus liegt auf der Entwicklung intelligenter Softwarelösungen, effizienter Automatisierungen und Werkzeuge, die das Leben wirklich einfacher machen.",
+    location: "Iran",
+    company: "Shayesteh Iranian E-Commerce GmbH",
+  },
+};
+
 export default function About() {
   const params = useParams();
   const locale = (params.locale as Locale) || "fa";
@@ -56,10 +74,32 @@ export default function About() {
     de: "Wer ich bin und was ich tue",
   };
 
+  const about = aboutTexts[locale];
+
   return (
     <section className="py-24" ref={ref}>
       <Container>
         <SectionTitle title={sectionTitle[locale]} subtitle={subtitle[locale]} />
+
+        {/* Bio text */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-2xl text-center mb-12"
+        >
+          <p className="text-base text-gray-400 leading-relaxed">{about.intro}</p>
+          <div className="mt-4 flex items-center justify-center gap-4 text-sm text-gray-500">
+            <span className="flex items-center gap-1.5">
+              <MapPin className="h-3.5 w-3.5" />
+              {about.location}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Briefcase className="h-3.5 w-3.5" />
+              {about.company}
+            </span>
+          </div>
+        </motion.div>
 
         <div className="grid gap-6 md:grid-cols-3">
           {values.map((value, i) => (

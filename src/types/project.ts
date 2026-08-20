@@ -31,4 +31,5 @@ export interface Project {
     stars?: number;
     forks?: number;
   };
+  architecture?: string[];
 }
