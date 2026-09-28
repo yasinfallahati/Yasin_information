@@ -32,9 +32,9 @@ export const personalInfo = {
     de: "KI-Ingenieur · Python-Entwickler · Automatisierungsbauer",
   },
   bio: {
-    fa: "ساخت راه‌حل‌های هوشمند که ساده، قابل اعتماد و واقعاً مفید هستند",
-    en: "Building intelligent solutions that are simple, reliable, and genuinely useful",
-    de: "Intelligente Lösungen entwickeln, die einfach, zuverlässig und wirklich nützlich sind",
+    fa: "مهندس هوش مصنوعی و توسعه‌دهنده پایتون — سیستم‌ها، اتوماسیون، API",
+    en: "AI engineer and Python developer — systems, automation, APIs",
+    de: "KI-Ingenieur und Python-Entwickler — Systeme, Automatisierung, APIs",
   },
   email: "yasinfallahati@gmail.com",
   website: "https://profileyasin.vercel.app/",

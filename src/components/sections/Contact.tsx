@@ -1,64 +1,63 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useParams } from "next/navigation";
 import { Mail, Send } from "lucide-react";
 import { Locale } from "@/types/project";
 import Container from "@/components/ui/Container";
-import SectionTitle from "@/components/ui/SectionTitle";
 import { useInView } from "@/hooks/useInView";
 
-const contactContent: Record<Locale, { title: string; subtitle: string; cta: string; description: string; emailCta: string; telegramCta: string }> = {
+const contactContent: Record<
+  Locale,
+  { title: string; description: string; emailCta: string; telegramCta: string }
+> = {
   fa: {
-    title: "بیایید چیزی هوشمند بسازیم",
-    subtitle: "آماده همکاری و گفتگو",
-    cta: "بیایید چیزی هوشمند بسازیم.",
-    description: "همیشه خوشحالم که درباره پروژه‌های جدید، همکاری‌ها یا فقط گفتگوی فنی صحبت کنم.",
-    emailCta: "ارسال ایمیل",
-    telegramCta: "پیام در تلگرام",
+    title: "تماس",
+    description: "برای همکاری، پروژه یا پرسش فنی از طریق ایمیل یا تلگرام پیام بگذارید.",
+    emailCta: "ایمیل",
+    telegramCta: "تلگرام",
   },
   en: {
-    title: "Let's build something intelligent",
-    subtitle: "Ready to collaborate and connect",
-    cta: "Let's build something intelligent.",
-    description: "Always happy to discuss new projects, collaborations, or just chat about tech.",
-    emailCta: "Send Email",
-    telegramCta: "Message on Telegram",
+    title: "Contact",
+    description: "For collaboration, projects, or technical questions — email or Telegram.",
+    emailCta: "Email",
+    telegramCta: "Telegram",
   },
   de: {
-    title: "Lass uns etwas Intelligentes entwickeln",
-    subtitle: "Bereit zur Zusammenarbeit und Vernetzung",
-    cta: "Lass uns etwas Intelligentes entwickeln.",
-    description: "Immer gerne über neue Projekte, Zusammenarbeit oder einfach über Tech quatschen.",
-    emailCta: "E-Mail senden",
-    telegramCta: "Telegram Nachricht",
+    title: "Kontakt",
+    description: "Für Zusammenarbeit, Projekte oder technische Fragen — E-Mail oder Telegram.",
+    emailCta: "E-Mail",
+    telegramCta: "Telegram",
   },
 };
 
 export default function Contact() {
   const params = useParams();
   const locale = (params.locale as Locale) || "fa";
-  const { ref, isInView } = useInView(0.1);
+  const { ref, isInView } = useInView(0.15);
+  const reduce = useReducedMotion();
   const content = contactContent[locale];
 
   return (
-    <section className="py-24" ref={ref}>
+    <section className="relative overflow-hidden border-t border-line py-28" ref={ref}>
       <Container>
-        <SectionTitle title={content.title} subtitle={content.subtitle} />
-
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={reduce ? false : { opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="mx-auto max-w-2xl text-center"
+          className="relative mx-auto max-w-xl text-center"
         >
-          <p className="text-xl font-semibold text-gray-50 mb-4">{content.cta}</p>
-          <p className="text-base text-gray-400 leading-relaxed">{content.description}</p>
+          <h2 className="font-display text-3xl font-bold tracking-tight text-bright sm:text-4xl">
+            {content.title}
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-mute">
+            {content.description}
+          </p>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href="mailto:yasinfallahati@gmail.com"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-400 hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 border border-line bg-elevated px-5 py-2.5 text-sm font-medium text-bright transition-colors hover:border-accent-strong"
             >
               <Mail className="h-4 w-4" />
               {content.emailCta}
@@ -67,7 +66,7 @@ export default function Contact() {
               href="https://t.me/yasinfallahatiiii"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-700 px-6 py-3 text-sm font-medium text-gray-50 transition-all hover:bg-gray-800"
+              className="inline-flex items-center justify-center gap-2 border border-transparent px-5 py-2.5 text-sm font-medium text-mute transition-colors hover:text-bright"
             >
               <Send className="h-4 w-4" />
               {content.telegramCta}

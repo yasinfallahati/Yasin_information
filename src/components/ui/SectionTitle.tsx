@@ -7,15 +7,18 @@ interface SectionTitleProps {
   align?: "center" | "start";
 }
 
-export default function SectionTitle({ title, subtitle, className, align = "center" }: SectionTitleProps) {
+export default function SectionTitle({
+  title,
+  subtitle,
+  className,
+  align = "center",
+}: SectionTitleProps) {
   return (
     <div className={cn("mb-12", align === "center" && "text-center", className)}>
-      <h2 className="text-3xl font-bold tracking-tight text-gray-50 sm:text-4xl lg:text-5xl">
+      <h2 className="font-display text-3xl font-bold tracking-tight text-bright sm:text-4xl">
         {title}
       </h2>
-      {subtitle && (
-        <p className="mt-4 text-base text-gray-300">{subtitle}</p>
-      )}
+      {subtitle && <p className="mt-3 text-sm text-mute sm:text-base">{subtitle}</p>}
     </div>
   );
 }

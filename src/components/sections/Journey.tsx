@@ -28,9 +28,9 @@ const statusIcons = {
 };
 
 const statusColors = {
-  completed: "text-emerald-400",
-  in_progress: "text-blue-500",
-  planned: "text-gray-500",
+  completed: "text-soft",
+  in_progress: "text-accent-strong",
+  planned: "text-mute",
 };
 
 export default function Journey() {
@@ -46,7 +46,7 @@ export default function Journey() {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute start-4 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/50 via-gray-700 to-gray-800 md:start-1/2" />
+          <div className="absolute start-4 top-0 bottom-0 w-px bg-gradient-to-b from-line via-line to-transparent md:start-1/2" />
 
           <div className="space-y-12">
             {journeySteps.map((step, i) => {
@@ -63,23 +63,23 @@ export default function Journey() {
                   }`}
                 >
                   <div className={`flex-1 ${isEven ? "md:text-end" : "md:text-start"}`}>
-                    <div className="rounded-xl border border-gray-700 bg-gray-800 p-6">
+                    <div className="border border-line bg-panel p-6">
                       <div className="mb-3 flex items-center gap-2">
                         <StatusIcon className={`h-4 w-4 ${statusColors[step.status]}`} />
                         <span className={`text-xs font-medium ${statusColors[step.status]}`}>
                           {statusLabels[locale][step.status]}
                         </span>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-50">
+                      <h3 className="text-lg font-semibold text-bright">
                         {step.title[locale]}
                       </h3>
-                      <p className="mt-2 text-sm text-gray-400">
+                      <p className="mt-2 text-sm text-mute">
                         {step.description[locale]}
                       </p>
                       <ul className="mt-4 space-y-1.5">
                         {step.items.map((item, j) => (
-                          <li key={j} className="flex items-center gap-2 text-sm text-gray-400">
-                            <span className="h-1 w-1 rounded-full bg-gray-600 shrink-0" />
+                          <li key={j} className="flex items-center gap-2 text-sm text-mute">
+                            <span className="h-1 w-1 shrink-0 rounded-full bg-line" />
                             {item[locale]}
                           </li>
                         ))}
@@ -87,14 +87,13 @@ export default function Journey() {
                     </div>
                   </div>
 
-                  {/* Timeline dot */}
                   <div className="absolute start-4 md:start-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center">
-                    <div className={`h-3 w-3 rounded-full border-2 ${
+                    <div className={`h-2.5 w-2.5 rounded-full border ${
                       step.status === "completed"
-                        ? "border-emerald-400 bg-emerald-400"
+                        ? "border-soft bg-soft"
                         : step.status === "in_progress"
-                        ? "border-blue-500 bg-blue-500 animate-pulse"
-                        : "border-gray-600 bg-gray-700"
+                        ? "border-accent-strong bg-accent-strong"
+                        : "border-line bg-panel"
                     }`} />
                   </div>
 

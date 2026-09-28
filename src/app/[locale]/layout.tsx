@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Vazirmatn } from "next/font/google";
+import { Syne, Manrope } from "next/font/google";
 import { Locale } from "@/types/project";
 import { isRtl, locales } from "@/lib/i18n";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import "../globals.css";
 
-const inter = Inter({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-syne",
   display: "swap",
 });
 
-const vazirmatn = Vazirmatn({
-  subsets: ["arabic"],
-  variable: "--font-vazirmatn",
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -25,9 +25,9 @@ const titles: Record<Locale, string> = {
 };
 
 const descriptions: Record<Locale, string> = {
-  fa: "پورتفولیوی یاسین فلاحتی — مهندس هوش مصنوعی، توسعه‌دهنده پایتون و سازنده اتوماسیون",
-  en: "Portfolio of Yasin Fallahati — AI Engineer, Python Developer, and Automation Builder",
-  de: "Portfolio von Yasin Fallahati — KI-Ingenieur, Python-Entwickler und Automatisierungsbauer",
+  fa: "پورتفولیوی یاسین فلاحتی — مهندس هوش مصنوعی، توسعه‌دهنده پایتون و اتوماسیون",
+  en: "Portfolio of Yasin Fallahati — AI engineer, Python developer, and automation",
+  de: "Portfolio von Yasin Fallahati — KI-Ingenieur, Python-Entwickler und Automatisierung",
 };
 
 export async function generateStaticParams() {
@@ -95,17 +95,25 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} dir={dir} className="dark">
+    <html lang={locale} dir={dir} className={`${syne.variable} ${manrope.variable}`}>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} ${vazirmatn.variable}`}>
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+      <body className="antialiased">
+        <div className="site-shell">
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

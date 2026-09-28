@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ExternalLink, ArrowRight, ArrowLeft } from "lucide-react";
@@ -14,9 +14,21 @@ import Badge from "@/components/ui/Badge";
 import { useInView } from "@/hooks/useInView";
 
 const sectionTitles: Record<Locale, { title: string; subtitle: string; viewAll: string }> = {
-  fa: { title: "پروژه‌های منتخب", subtitle: "نمونه‌کارهای برتر من", viewAll: "مشاهده همه پروژه‌ها" },
-  en: { title: "Featured Projects", subtitle: "My highlighted work", viewAll: "View All Projects" },
-  de: { title: "Ausgewählte Projekte", subtitle: "Meine Highlights", viewAll: "Alle Projekte ansehen" },
+  fa: {
+    title: "پروژه‌های منتخب",
+    subtitle: "نمونه کارهای اخیر",
+    viewAll: "همه پروژه‌ها",
+  },
+  en: {
+    title: "Selected projects",
+    subtitle: "Recent work",
+    viewAll: "All projects",
+  },
+  de: {
+    title: "Ausgewählte Projekte",
+    subtitle: "Aktuelle Arbeiten",
+    viewAll: "Alle Projekte",
+  },
 };
 
 export default function FeaturedProjects() {
@@ -24,81 +36,80 @@ export default function FeaturedProjects() {
   const locale = (params.locale as Locale) || "fa";
   const rtl = isRtl(locale);
   const { ref, isInView } = useInView(0.1);
+  const reduce = useReducedMotion();
   const featured = getFeaturedProjects().slice(0, 3);
   const titles = sectionTitles[locale];
 
   return (
-    <section className="py-24" ref={ref}>
+    <section className="relative overflow-hidden py-24" ref={ref}>
       <Container>
         <SectionTitle title={titles.title} subtitle={titles.subtitle} />
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((project, i) => (
-            <motion.div
+            <motion.article
               key={project.slug}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              className="group flex h-full flex-col border-t border-line pt-5"
             >
-              <Link href={`/${locale}/projects/${project.slug}`} className="block h-full">
-                <div className="group relative h-full rounded-xl border border-gray-700 bg-gray-800 p-6 transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5">
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="text-xs font-medium text-blue-500 uppercase tracking-wider">
-                      {project.category}
-                    </span>
-                    <div className="flex gap-2">
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-500 transition-colors hover:text-blue-400"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <GithubIcon className="h-4 w-4" />
-                        </a>
-                      )}
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-500 transition-colors hover:text-blue-400"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-xs font-medium uppercase tracking-[0.14em] text-mute">
+                  {project.category}
+                </span>
+                <div className="flex gap-2">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-mute transition-colors hover:text-bright"
+                      aria-label={`${project.name} GitHub`}
+                    >
+                      <GithubIcon className="h-4 w-4" />
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-mute transition-colors hover:text-bright"
+                      aria-label={`${project.name} demo`}
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+              </div>
 
-                  <h3 className="text-lg font-semibold text-gray-50 group-hover:text-blue-400 transition-colors">
-                    {project.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-gray-400 line-clamp-2">
-                    {project.description[locale]}
-                  </p>
-
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <Badge key={tech} variant="secondary">
-                        {tech}
-                      </Badge>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <Badge>+{project.technologies.length - 3}</Badge>
-                    )}
-                  </div>
+              <Link href={`/${locale}/projects/${project.slug}`} className="flex flex-1 flex-col">
+                <h3 className="text-lg font-semibold text-bright transition-colors group-hover:text-accent-strong">
+                  {project.name}
+                </h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-mute line-clamp-2">
+                  {project.description[locale]}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {project.technologies.slice(0, 3).map((tech) => (
+                    <Badge key={tech} variant="secondary">
+                      {tech}
+                    </Badge>
+                  ))}
+                  {project.technologies.length > 3 && (
+                    <Badge>+{project.technologies.length - 3}</Badge>
+                  )}
                 </div>
               </Link>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 
         <div className="mt-12 text-center">
           <Link
             href={`/${locale}/projects`}
-            className="inline-flex items-center gap-2 text-sm font-medium text-blue-500 transition-colors hover:text-blue-400"
+            className="inline-flex items-center gap-2 text-sm font-medium text-soft transition-colors hover:text-bright"
           >
             {titles.viewAll}
             {rtl ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}

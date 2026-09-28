@@ -23,7 +23,7 @@ export default function Certificates() {
   const titles = sectionTitles[locale];
 
   return (
-    <section className="py-24 bg-gray-800/50" ref={ref}>
+    <section className="py-24" ref={ref}>
       <Container>
         <SectionTitle title={titles.title} subtitle={titles.subtitle} />
 
@@ -37,11 +37,11 @@ export default function Certificates() {
             >
               <Card className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="rounded-lg bg-blue-500/10 p-2.5">
-                    <Award className="h-5 w-5 text-blue-500" />
+                  <div className="border border-line bg-elevated p-2.5">
+                    <Award className="h-5 w-5 text-accent" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-50">
+                    <h3 className="text-lg font-semibold text-bright">
                       {cert.name[locale]}
                     </h3>
                     <p className="mt-1 text-sm text-gray-400">

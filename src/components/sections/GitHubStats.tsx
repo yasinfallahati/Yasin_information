@@ -11,9 +11,9 @@ import Card from "@/components/ui/Card";
 import { useInView } from "@/hooks/useInView";
 
 const sectionTitles: Record<Locale, { title: string; subtitle: string }> = {
-  fa: { title: "فعالیت گیت‌هاب", subtitle: "آمار و فعالیت من در گیت‌هاب" },
-  en: { title: "GitHub Activity", subtitle: "My GitHub stats and activity" },
-  de: { title: "GitHub-Aktivität", subtitle: "Meine GitHub-Statistiken und Aktivitäten" },
+  fa: { title: "گیت‌هاب", subtitle: "آمار مخازن و فعالیت" },
+  en: { title: "GitHub", subtitle: "Repository stats and activity" },
+  de: { title: "GitHub", subtitle: "Repository-Statistiken und Aktivität" },
 };
 
 const statLabels: Record<Locale, string[]> = {
@@ -35,7 +35,7 @@ export default function GitHubStats() {
     : [0, 0, 0, 0];
 
   return (
-    <section className="py-24 bg-gray-800/50" ref={ref}>
+    <section className="relative overflow-hidden py-24" ref={ref}>
       <Container>
         <SectionTitle title={titles.title} subtitle={titles.subtitle} />
 
@@ -50,12 +50,12 @@ export default function GitHubStats() {
               <Card className="p-6 text-center">
                 {(() => {
                   const Icon = statIcons[i];
-                  return <Icon className="mx-auto mb-3 h-5 w-5 text-blue-500" />;
+                  return <Icon className="mx-auto mb-3 h-5 w-5 text-accent" />;
                 })()}
-                <div className="text-2xl font-bold text-gray-50">
+                <div className="text-2xl font-bold text-bright">
                   {loading ? "..." : error ? "--" : statValues[i]}
                 </div>
-                <div className="mt-1 text-xs text-gray-400 uppercase tracking-wider">{label}</div>
+                <div className="mt-1 text-xs uppercase tracking-wider text-mute">{label}</div>
               </Card>
             </motion.div>
           ))}
