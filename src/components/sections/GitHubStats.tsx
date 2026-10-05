@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useParams } from "next/navigation";
 import { GitFork, Star, Users, Code2 } from "lucide-react";
 import { Locale } from "@/types/project";
@@ -11,9 +11,9 @@ import Card from "@/components/ui/Card";
 import { useInView } from "@/hooks/useInView";
 
 const sectionTitles: Record<Locale, { title: string; subtitle: string }> = {
-  fa: { title: "گیت‌هاب", subtitle: "آمار مخازن و فعالیت" },
-  en: { title: "GitHub", subtitle: "Repository stats and activity" },
-  de: { title: "GitHub", subtitle: "Repository-Statistiken und Aktivität" },
+  fa: { title: "گیت‌هاب", subtitle: "آمار مخازن و فعالیت واقعی" },
+  en: { title: "GitHub", subtitle: "Live repository stats and activity" },
+  de: { title: "GitHub", subtitle: "Live-Repository-Statistiken und Aktivität" },
 };
 
 const statLabels: Record<Locale, string[]> = {
@@ -26,6 +26,7 @@ export default function GitHubStats() {
   const params = useParams();
   const locale = (params.locale as Locale) || "fa";
   const { ref, isInView } = useInView(0.1);
+  const reduce = useReducedMotion();
   const { stats, loading, error } = useGithub();
   const titles = sectionTitles[locale];
 
@@ -35,7 +36,7 @@ export default function GitHubStats() {
     : [0, 0, 0, 0];
 
   return (
-    <section className="relative overflow-hidden py-24" ref={ref}>
+    <section className="relative overflow-hidden py-24 sm:py-28" ref={ref}>
       <Container>
         <SectionTitle title={titles.title} subtitle={titles.subtitle} />
 
@@ -43,19 +44,21 @@ export default function GitHubStats() {
           {statLabels[locale].map((label, i) => (
             <motion.div
               key={label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
             >
               <Card className="p-6 text-center">
                 {(() => {
                   const Icon = statIcons[i];
                   return <Icon className="mx-auto mb-3 h-5 w-5 text-accent" />;
                 })()}
-                <div className="text-2xl font-bold text-bright">
-                  {loading ? "..." : error ? "--" : statValues[i]}
+                <div className="font-display text-2xl font-bold text-bright">
+                  {loading ? "…" : error ? "—" : statValues[i]}
                 </div>
-                <div className="mt-1 text-xs uppercase tracking-wider text-mute">{label}</div>
+                <div className="mt-1 text-[11px] uppercase tracking-[0.14em] text-mute">
+                  {label}
+                </div>
               </Card>
             </motion.div>
           ))}
@@ -63,25 +66,29 @@ export default function GitHubStats() {
 
         {stats && Object.keys(stats.languages).length > 0 && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.45, delay: 0.35 }}
             className="mt-8"
           >
             <Card className="p-6">
-              <h3 className="mb-4 text-sm font-semibold text-gray-300">
-                {locale === "fa" ? "توزیع زبان‌ها" : locale === "de" ? "Sprachverteilung" : "Language Distribution"}
+              <h3 className="mb-4 text-sm font-semibold text-soft">
+                {locale === "fa"
+                  ? "توزیع زبان‌ها"
+                  : locale === "de"
+                    ? "Sprachverteilung"
+                    : "Language distribution"}
               </h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2.5">
                 {Object.entries(stats.languages)
                   .sort(([, a], [, b]) => b - a)
                   .map(([lang, count]) => (
                     <div
                       key={lang}
-                      className="flex items-center gap-2 rounded-md bg-gray-900 border border-gray-700 px-3 py-1.5 text-sm"
+                      className="flex items-center gap-2 rounded-md border border-line bg-ink px-3 py-1.5 text-sm"
                     >
-                      <span className="text-gray-300">{lang}</span>
-                      <span className="text-xs text-gray-500">({count})</span>
+                      <span className="text-soft">{lang}</span>
+                      <span className="text-xs text-mute">({count})</span>
                     </div>
                   ))}
               </div>

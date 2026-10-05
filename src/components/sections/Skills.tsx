@@ -8,10 +8,7 @@ import { skillGroups } from "@/data/skills";
 import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { useInView } from "@/hooks/useInView";
-import {
-  PythonIcon,
-  skillGroupIcons,
-} from "@/components/icons/LanguageIcons";
+import { PythonIcon, skillGroupIcons } from "@/components/icons/LanguageIcons";
 
 const sectionTitles: Record<Locale, { title: string; subtitle: string }> = {
   fa: {
@@ -36,11 +33,11 @@ export default function Skills() {
   const titles = sectionTitles[locale];
 
   return (
-    <section className="relative overflow-hidden border-y border-line py-24" ref={ref}>
+    <section className="relative overflow-hidden border-y border-line py-24 sm:py-28" ref={ref}>
       <Container>
         <SectionTitle title={titles.title} subtitle={titles.subtitle} />
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {skillGroups.map((group, i) => {
             const Icon =
               (skillGroupIcons[group.id as keyof typeof skillGroupIcons] as
@@ -52,11 +49,11 @@ export default function Skills() {
                 initial={reduce ? false : { opacity: 0, y: 16 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.45, delay: i * 0.06 }}
-                className="border border-line bg-panel p-6"
+                className="depth-card rounded-xl border border-line bg-panel p-6"
               >
                 <div className="mb-4 flex items-center gap-3">
-                  <span className="text-accent">
-                    <Icon size={28} />
+                  <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-accent/20 bg-accent/5 text-accent">
+                    <Icon size={22} />
                   </span>
                   <h3 className="text-base font-semibold text-bright">{group.name[locale]}</h3>
                 </div>
@@ -64,7 +61,7 @@ export default function Skills() {
                   {group.skills.map((skill) => (
                     <span
                       key={skill.name}
-                      className="inline-flex items-center border border-line bg-ink px-2.5 py-1 text-xs font-medium text-soft"
+                      className="inline-flex items-center rounded-md border border-line bg-ink px-2.5 py-1 text-xs font-medium text-soft transition-colors hover:border-accent/30 hover:text-bright"
                     >
                       {skill.name}
                     </span>

@@ -12,21 +12,21 @@ const contactContent: Record<
   { title: string; description: string; emailCta: string; telegramCta: string }
 > = {
   fa: {
-    title: "تماس",
-    description: "برای همکاری، پروژه یا پرسش فنی از طریق ایمیل یا تلگرام پیام بگذارید.",
-    emailCta: "ایمیل",
+    title: "بیایید همکاری کنیم",
+    description: "برای پروژه، اتوماسیون، یا ساخت محصول local-first — ایمیل یا تلگرام.",
+    emailCta: "ارسال ایمیل",
     telegramCta: "تلگرام",
   },
   en: {
-    title: "Contact",
-    description: "For collaboration, projects, or technical questions — email or Telegram.",
-    emailCta: "Email",
+    title: "Let's work together",
+    description: "For projects, automation, or local-first products — email or Telegram.",
+    emailCta: "Send email",
     telegramCta: "Telegram",
   },
   de: {
-    title: "Kontakt",
-    description: "Für Zusammenarbeit, Projekte oder technische Fragen — E-Mail oder Telegram.",
-    emailCta: "E-Mail",
+    title: "Lass uns zusammenarbeiten",
+    description: "Für Projekte, Automatisierung oder local-first Produkte — E-Mail oder Telegram.",
+    emailCta: "E-Mail senden",
     telegramCta: "Telegram",
   },
 };
@@ -39,14 +39,16 @@ export default function Contact() {
   const content = contactContent[locale];
 
   return (
-    <section className="relative overflow-hidden border-t border-line py-28" ref={ref}>
+    <section className="relative overflow-hidden border-t border-line py-28 sm:py-32" ref={ref}>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_100%,rgba(45,212,191,0.06),transparent)]" />
       <Container>
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 12 }}
+          initial={reduce ? false : { opacity: 0, y: 14 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.55 }}
           className="relative mx-auto max-w-xl text-center"
         >
+          <div className="mx-auto mb-5 h-px w-12 bg-gradient-to-r from-accent to-violet" />
           <h2 className="font-display text-3xl font-bold tracking-tight text-bright sm:text-4xl">
             {content.title}
           </h2>
@@ -55,10 +57,7 @@ export default function Contact() {
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="mailto:yasinfallahati@gmail.com"
-              className="inline-flex items-center justify-center gap-2 border border-line bg-elevated px-5 py-2.5 text-sm font-medium text-bright transition-colors hover:border-accent-strong"
-            >
+            <a href="mailto:yasinfallahati@gmail.com" className="btn-primary">
               <Mail className="h-4 w-4" />
               {content.emailCta}
             </a>
@@ -66,7 +65,7 @@ export default function Contact() {
               href="https://t.me/yasinfallahatiiii"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 border border-transparent px-5 py-2.5 text-sm font-medium text-mute transition-colors hover:text-bright"
+              className="btn-ghost"
             >
               <Send className="h-4 w-4" />
               {content.telegramCta}

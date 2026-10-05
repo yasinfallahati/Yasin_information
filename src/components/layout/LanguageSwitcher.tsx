@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { Locale } from "@/types/project";
-import { locales, localeNames, localeFlags } from "@/lib/i18n";
+import { locales, localeNames } from "@/lib/i18n";
 
 export default function LanguageSwitcher({ locale }: { locale: Locale }) {
   const pathname = usePathname();
@@ -15,20 +15,19 @@ export default function LanguageSwitcher({ locale }: { locale: Locale }) {
   }
 
   return (
-    <div className="flex items-center gap-0.5 border border-line bg-panel p-0.5">
+    <div className="flex items-center gap-0.5 rounded-lg border border-line bg-panel p-0.5">
       {locales.map((loc) => (
         <button
           key={loc}
           onClick={() => switchLocale(loc)}
-          className={`px-2 py-1 text-xs font-medium transition-colors ${
+          className={`rounded-md px-2 py-1 text-xs font-medium transition-colors ${
             locale === loc
-              ? "bg-elevated text-bright"
+              ? "bg-elevated text-accent-strong"
               : "text-mute hover:text-soft"
           }`}
           aria-label={`Switch to ${localeNames[loc]}`}
           title={localeNames[loc]}
         >
-          <span className="mr-1">{localeFlags[loc]}</span>
           {loc.toUpperCase()}
         </button>
       ))}

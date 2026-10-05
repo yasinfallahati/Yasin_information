@@ -146,7 +146,7 @@ export default function LanguageField() {
       {fieldIcons.map(({ Comp, style, size, slow, hideOnMobile }, i) => (
         <motion.div
           key={i}
-          className={`absolute text-accent ${hideOnMobile ? "hidden sm:block" : ""} ${
+          className={`absolute text-accent/70 ${hideOnMobile ? "hidden sm:block" : ""} ${
             reduce ? "opacity-30" : slow ? "icon-drift-slow" : "icon-drift"
           }`}
           style={{ ...style, animationDelay: `${i * 0.7}s` }}

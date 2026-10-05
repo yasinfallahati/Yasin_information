@@ -25,31 +25,31 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-line bg-ink">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 md:grid-cols-3">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-3">
           <div>
             <Link href={`/${locale}`} className="font-display text-lg font-semibold text-bright">
-              Yasin Fallahati
+              Yasin<span className="text-accent">.</span> Fallahati
             </Link>
             <p className="mt-3 text-sm leading-6 text-mute">
               {locale === "fa"
-                ? "مهندس هوش مصنوعی · پایتون · اتوماسیون"
+                ? "اتوماسیون · هوش مصنوعی لوکال · فول‌استک"
                 : locale === "de"
-                  ? "KI-Ingenieur · Python · Automatisierung"
-                  : "AI Engineer · Python · Automation"}
+                  ? "Automatisierung · Local-first KI · Full-stack"
+                  : "Automation · Local-first AI · Full-stack"}
             </p>
           </div>
 
           <div>
-            <h3 className="mb-4 text-xs font-medium uppercase tracking-[0.16em] text-mute">
+            <h3 className="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-mute">
               {locale === "fa" ? "لینک‌ها" : "Links"}
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5">
               {footerLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href ? `/${locale}/${link.href}` : `/${locale}`}
-                    className="text-sm text-mute transition-colors hover:text-bright"
+                    className="text-sm text-mute transition-colors hover:text-accent-strong"
                   >
                     {link.label[locale]}
                   </Link>
@@ -59,7 +59,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-xs font-medium uppercase tracking-[0.16em] text-mute">
+            <h3 className="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-mute">
               {locale === "fa" ? "ارتباط" : locale === "de" ? "Kontakt" : "Connect"}
             </h3>
             <div className="flex gap-2">
@@ -69,7 +69,7 @@ export default function Footer() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-line p-2 text-mute transition-colors hover:border-accent hover:text-bright"
+                  className="rounded-lg border border-line p-2.5 text-mute transition-colors hover:border-accent/40 hover:text-accent"
                   aria-label={link.name}
                 >
                   <link.icon className="h-4 w-4" />
@@ -79,7 +79,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-line pt-6">
+        <div className="mt-12 border-t border-line pt-6">
           <p className="text-xs text-mute">
             © {new Date().getFullYear()} Yasin Fallahati
           </p>

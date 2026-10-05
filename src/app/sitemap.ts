@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next";
-
-const SITE_URL = "https://yasinfallahati.github.io";
+import { SITE_URL } from "@/lib/constants";
 
 export const dynamic = "force-static";
 

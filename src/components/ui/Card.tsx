@@ -10,8 +10,8 @@ export default function Card({ children, className, hover = true }: CardProps) {
   return (
     <div
       className={cn(
-        "border border-line bg-panel",
-        hover && "transition-colors duration-300 hover:border-accent/40",
+        "rounded-xl border border-line bg-panel",
+        hover && "depth-card",
         className
       )}
     >

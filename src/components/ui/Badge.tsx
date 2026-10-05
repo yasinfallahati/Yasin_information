@@ -10,10 +10,10 @@ export default function Badge({ children, variant = "default", className }: Badg
   return (
     <span
       className={cn(
-        "inline-flex items-center px-2 py-0.5 text-xs font-medium",
+        "inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-medium tracking-wide",
         {
           "border border-line bg-panel text-soft": variant === "default",
-          "border border-line bg-elevated text-bright": variant === "primary",
+          "border border-accent/25 bg-accent/10 text-accent-strong": variant === "primary",
           "border border-line bg-ink text-mute": variant === "secondary",
         },
         className

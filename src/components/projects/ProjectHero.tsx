@@ -19,18 +19,22 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
   const rtl = isRtl(locale);
 
   return (
-    <section className="pt-24 pb-12">
+    <section className="pb-12 pt-24">
       <Container>
         <Link
           href={`/${locale}/projects`}
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-gray-50 transition-colors mb-8"
+          className="mb-8 inline-flex items-center gap-2 text-sm text-mute transition-colors hover:text-bright"
         >
           {rtl ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
-          {locale === "fa" ? "بازگشت به پروژه‌ها" : locale === "de" ? "Zurück zu Projekten" : "Back to Projects"}
+          {locale === "fa"
+            ? "بازگشت به پروژه‌ها"
+            : locale === "de"
+              ? "Zurück zu Projekten"
+              : "Back to projects"}
         </Link>
 
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs font-medium text-blue-500 uppercase tracking-wider">
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-mute">
             {project.category}
           </span>
           {project.featured && (
@@ -38,13 +42,19 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
               {locale === "fa" ? "ویژه" : locale === "de" ? "Hervorgehoben" : "Featured"}
             </Badge>
           )}
+          {project.demo && (
+            <span className="inline-flex items-center gap-1 rounded-full border border-accent/25 bg-accent/5 px-2 py-0.5 text-[10px] font-medium text-accent-strong">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              {locale === "fa" ? "زنده" : "Live"}
+            </span>
+          )}
         </div>
 
-        <h1 className="text-4xl font-bold text-gray-50 sm:text-5xl">
+        <h1 className="font-display text-4xl font-bold tracking-tight text-bright sm:text-5xl">
           {project.name}
         </h1>
 
-        <p className="mt-4 max-w-2xl text-lg text-gray-400">
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-soft">
           {project.description[locale]}
         </p>
 
@@ -56,27 +66,22 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
           ))}
         </div>
 
-        <div className="mt-8 flex gap-4">
+        <div className="mt-8 flex flex-wrap gap-3">
+          {project.demo && (
+            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              <ExternalLink className="h-4 w-4" />
+              {locale === "fa" ? "نمایش زنده" : locale === "de" ? "Live-Demo" : "Live demo"}
+            </a>
+          )}
           {project.github && (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-400 hover:shadow-blue-500/30"
+              className="btn-ghost border border-line"
             >
               <GithubIcon className="h-4 w-4" />
-              {locale === "fa" ? "کد منبع" : locale === "de" ? "Quellcode" : "Source Code"}
-            </a>
-          )}
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-gray-700 px-6 py-3 text-sm font-medium text-gray-50 transition-all hover:bg-gray-800"
-            >
-              <ExternalLink className="h-4 w-4" />
-              {locale === "fa" ? "نمایش زنده" : locale === "de" ? "Live-Demo" : "Live Demo"}
+              {locale === "fa" ? "کد منبع" : locale === "de" ? "Quellcode" : "Source code"}
             </a>
           )}
         </div>
