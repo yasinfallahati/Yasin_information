@@ -1,33 +1,18 @@
-import { MetadataRoute } from "next";
-
-const SITE_URL = "https://yasinfallahati.github.io";
+import type { MetadataRoute } from "next";
+import { projects } from "@/content/projects";
+import { SITE_URL, locales } from "@/lib/i18n";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const locales = ["fa", "en", "de"];
-  const pages = ["", "about", "projects", "skills", "journey", "certificates", "contact"];
+  const paths = ["", "/projects", "/about", ...projects.map((p) => `/projects/${p.slug}`)];
 
-  const entries: MetadataRoute.Sitemap = [];
-
-  for (const locale of locales) {
-    for (const page of pages) {
-      const path = page ? `/${locale}/${page}` : `/${locale}`;
-      entries.push({
-        url: `${SITE_URL}${path}`,
-        lastModified: new Date(),
-        changeFrequency: "weekly",
-        priority: page === "" ? 1 : 0.8,
-        alternates: {
-          languages: {
-            fa: `${SITE_URL}/${page ? "fa/" + page : "fa"}`,
-            en: `${SITE_URL}/${page ? "en/" + page : "en"}`,
-            de: `${SITE_URL}/${page ? "de/" + page : "de"}`,
-          },
-        },
-      });
-    }
-  }
-
-  return entries;
+  return locales.flatMap((locale) =>
+    paths.map((path) => ({
+      url: `${SITE_URL}/${locale}${path}`,
+      alternates: {
+        languages: Object.fromEntries(locales.map((l) => [l, `${SITE_URL}/${l}${path}`])),
+      },
+    }))
+  );
 }

@@ -1,119 +1,76 @@
 import type { Metadata } from "next";
-import { Syne, Manrope } from "next/font/google";
-import { Locale } from "@/types/project";
-import { isRtl, locales } from "@/lib/i18n";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import { contact, copy, name, role } from "@/content/site";
+import { estedad, schibsted } from "@/lib/fonts";
+import {
+  SITE_URL,
+  isRtl,
+  languageAlternates,
+  locales,
+  resolveLocale,
+} from "@/lib/i18n";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import "../globals.css";
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
-});
+export const dynamicParams = false;
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-  display: "swap",
-});
-
-const titles: Record<Locale, string> = {
-  fa: "یاسین فلاحتی — مهندس هوش مصنوعی",
-  en: "Yasin Fallahati — AI Engineer",
-  de: "Yasin Fallahati — KI-Ingenieur",
-};
-
-const descriptions: Record<Locale, string> = {
-  fa: "پورتفولیوی یاسین فلاحتی — مهندس هوش مصنوعی، توسعه‌دهنده پایتون و اتوماسیون",
-  en: "Portfolio of Yasin Fallahati — AI engineer, Python developer, and automation",
-  de: "Portfolio von Yasin Fallahati — KI-Ingenieur, Python-Entwickler und Automatisierung",
-};
-
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const loc = locale as Locale;
+export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
+  const locale = resolveLocale((await params).locale);
+  const { title, description } = copy[locale].meta;
 
   return {
-    title: titles[loc],
-    description: descriptions[loc],
-    alternates: {
-      canonical: `https://yasinfallahati.github.io/${loc}`,
-      languages: {
-        fa: "/fa",
-        en: "/en",
-        de: "/de",
-      },
-    },
+    metadataBase: new URL(SITE_URL),
+    title: { default: title, template: `%s | ${name[locale]}` },
+    description,
+    alternates: { canonical: `/${locale}`, languages: languageAlternates() },
     openGraph: {
-      title: titles[loc],
-      description: descriptions[loc],
+      title,
+      description,
       type: "website",
-      locale: loc === "fa" ? "fa_IR" : loc === "de" ? "de_DE" : "en_US",
-      url: `https://yasinfallahati.github.io/${loc}`,
-      siteName: "Yasin Fallahati",
+      locale: { fa: "fa_IR", en: "en_US", de: "de_DE" }[locale],
+      url: `/${locale}`,
+      siteName: name[locale],
+      images: [{ url: "/og.png", width: 1200, height: 630, alt: title }],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: titles[loc],
-      description: descriptions[loc],
-    },
+    twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
   };
 }
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  const loc = locale as Locale;
-  const dir = isRtl(loc) ? "rtl" : "ltr";
+export default async function LocaleLayout({ children, params }: LayoutProps<"/[locale]">) {
+  const locale = resolveLocale((await params).locale);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Yasin Fallahati",
-    url: "https://yasinfallahati.github.io",
-    jobTitle: "AI Engineer",
-    description: descriptions[loc],
-    sameAs: [
-      "https://github.com/yasinfallahati",
-      "https://t.me/yasinfallahatiiii",
-      "https://instagram.com/yasinfallahatiiiii",
-    ],
+    name: name[locale],
+    url: `${SITE_URL}/${locale}`,
+    jobTitle: role[locale],
+    sameAs: [contact.github, contact.telegram],
   };
 
   return (
-    <html lang={locale} dir={dir} className={`${syne.variable} ${manrope.variable}`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
+    <html
+      lang={locale}
+      dir={isRtl(locale) ? "rtl" : "ltr"}
+      className={`${estedad.variable} ${schibsted.variable}`}
+    >
+      <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
         />
-      </head>
-      <body className="antialiased">
-        <div className="site-shell">
-          <Navbar />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </div>
+        <a href="#main" className="skip-link">
+          {copy[locale].skipToContent}
+        </a>
+        <Header locale={locale} />
+        <main id="main">{children}</main>
+        <Footer locale={locale} />
       </body>
     </html>
   );
